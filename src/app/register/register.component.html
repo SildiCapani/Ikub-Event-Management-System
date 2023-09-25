@@ -4,7 +4,7 @@
         <form [formGroup]="registerForm" (ngSubmit)="submit()">
 
             <div class="input-container">
-            <label>Name:</label>
+            <label>Full Name:</label>
                 <div class="content">
                     <input type="text" placeholder="Name" formControlName="name">
                 </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: registerForm.get('name')}"></ng-container>

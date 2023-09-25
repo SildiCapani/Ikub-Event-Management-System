@@ -4,6 +4,7 @@ import { User } from 'src/app/models/User';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore, AngularFirestoreDocument, } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class UserService {
   private user$ = new BehaviorSubject<User>(this.getUserFromLocaleStorage());
   public userObservable: Observable<User>;
 
-  constructor( private httpClient: HttpClient, private db: AngularFireDatabase, private auth: AngularFireAuth ) { 
+  constructor( private httpClient: HttpClient, private db: AngularFireDatabase, private auth: AngularFireAuth, private fireStore: AngularFirestore ) { 
     this.userObservable = this.user$.asObservable();
    }
 
@@ -33,6 +34,35 @@ export class UserService {
     })
    }
 
+   userSignUp(email: string, password: string) {
+    return this.auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((result) => {
+        /* Call the SendVerificaitonMail() function when new user sign 
+        up and returns promise */
+        // this.SendVerificationMail();
+        this.SetUserData(result.user);
+      })
+      .catch((error) => {
+        window.alert(error.message);
+      });
+  }
+
+  SetUserData(user: any) {
+    const userRef: AngularFirestoreDocument<any> = this.fireStore.doc(
+      `users/${user.uid}`
+    );
+    const userData: User = {
+      uid: user.uid,
+      email: user.email,
+      fullName: user.name,
+      role: user.role,
+      emailVerified: user.emailVerified,
+    };
+    return userRef.set(userData, {
+      merge: true,
+    });
+  }
 
 
    private setUserToLocaleStorage(user: User): void {

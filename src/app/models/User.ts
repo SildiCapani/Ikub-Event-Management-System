@@ -1,8 +1,7 @@
 export interface User {
-    id: number,
-    name: string,
+    uid?: number,
+    fullName: string,
     email: string,
-    password: string,
-    isAdmin: boolean,
-    liked: number[]
+    role: string,
+    emailVerified: boolean
 }
