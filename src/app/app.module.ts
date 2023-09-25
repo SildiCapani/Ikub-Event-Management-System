@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { NgbPaginationModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatIconModule} from '@angular/material/icon';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+
 
 import { UsersComponent } from './users/users.component';
 import { EventsComponent } from './events/events.component';
@@ -22,6 +23,13 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderComponent } from './header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
+// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+// import { provideDatabase,getDatabase } from '@angular/fire/database';
+// import { provideFunctions,getFunctions } from '@angular/fire/functions';
+// import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 
 @NgModule({
   declarations: [
@@ -40,18 +48,20 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MatSlideToggleModule,
     MatToolbarModule,
     MatButtonModule,
-    MatSidenavModule,
     NgbModule,
-    NgbPaginationModule, 
     NgbAlertModule,
     MatIconModule,
     FormsModule, 
-    ReactiveFormsModule
+    ReactiveFormsModule, 
+    //provideFirebaseApp(() => initializeApp(environment.firebase)), provideAnalytics(() => getAnalytics()), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()),
+    AngularFireModule.initializeApp(environment.firebase),
+    provideAuth(() => getAuth())
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService,UserTrackingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

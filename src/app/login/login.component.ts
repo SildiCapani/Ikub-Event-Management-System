@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserService } from '../services/user/user.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   returnUrl = '';
   showPassword: boolean = false;
 
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {}
 
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
@@ -25,6 +26,10 @@ export class LoginComponent implements OnInit {
 
   submit(): void {
     this.isSubmitted = true
+    this.userService.userLogin(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
+    .then(() => {
+      this.router.navigateByUrl(this.returnUrl);
+    })
   }
 
   ngOnInit(): void {

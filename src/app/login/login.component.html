@@ -15,7 +15,7 @@
                 <label>Password:</label>
                 <div class="content">
                     <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" formControlName="password">
-                    <a class="show-password" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide Password' : 'Show Password' }}</a>
+                    <a class="show-password" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide ' : 'Show ' }}</a>
                 </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: loginForm.get('password')}"></ng-container>
                 
             

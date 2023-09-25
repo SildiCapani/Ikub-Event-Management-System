@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "internship-project",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}

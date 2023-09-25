@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ikub-internship": {
+      "hosting": {
+        "internship-project": [
+          "ikub-internship"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ikub-internship"
+  }
+}

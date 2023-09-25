@@ -11,7 +11,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent
+    component: EventsComponent
   },
   {
     path: 'login',
@@ -20,10 +20,6 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  },
-  {
-    path: 'events',
-    component: EventsComponent
   },
   {
     path: 'event/:id',
