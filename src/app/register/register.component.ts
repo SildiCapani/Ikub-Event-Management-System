@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user/user.service';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../models/User';
 
 
 @Component({
@@ -33,7 +34,19 @@ export class RegisterComponent implements OnInit {
 
   submit(): void {
     this.isSubmitted = true
+    if(this.registerForm.invalid)return;
 
+    const user: User = {
+      fullName: this.registerForm.get('name')?.value,
+      email: this.registerForm.get('email')?.value,
+      role: 'costumer',
+      emailVerified: false
+    }
+
+    const password: string = this.registerForm.get('password')?.value
+
+    this.userService.userSignUp(user, password)
+    console.log(user)
   }
 
   ngOnInit(): void {

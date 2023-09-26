@@ -24,11 +24,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { HeaderComponent } from './header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
-// import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-
-
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 @NgModule({
@@ -54,14 +53,14 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     NgbAlertModule,
     MatIconModule,
     FormsModule, 
-    ReactiveFormsModule, 
-    //provideFirebaseApp(() => initializeApp(environment.firebase)), provideAnalytics(() => getAnalytics()), provideAuth(() => getAuth()), provideDatabase(() => getDatabase()), provideFunctions(() => getFunctions()), provideMessaging(() => getMessaging()),
+    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    provideAuth(() => getAuth())
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule,
+    AngularFireDatabaseModule, 
   ],
-  providers: [
-    ScreenTrackingService,UserTrackingService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

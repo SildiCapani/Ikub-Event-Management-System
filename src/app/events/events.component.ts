@@ -3,6 +3,8 @@ import { User } from '../models/User';
 import { UserService } from '../services/user/user.service';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable, Subscription } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Component({
   selector: 'app-events',
@@ -13,17 +15,14 @@ import { Observable, Subscription } from 'rxjs';
 
 export class EventsComponent implements OnInit {
   
-  user!: User[]
-  users?: User;
-  usersSubscription!: Subscription;
-
-  constructor(private userService: UserService, private db: AngularFireDatabase) {
-    
-  }
-
+  user?: User;
+  
+  constructor(private userService: UserService) {
+      
+    }
+  
   ngOnInit(): void {
-      this.userService.getUsers().subscribe(user => this.user = user)
-      this.userService.userObservable.subscribe( user => this.users = user)
+      this.userService.userObservable.subscribe( user => this.user = user)
     }
 
 }
