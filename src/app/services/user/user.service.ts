@@ -5,6 +5,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +17,8 @@ export class UserService {
   private user$ = new BehaviorSubject<User>(this.getUserFromLocaleStorage());
   public userObservable: Observable<User>;
 
-  constructor( private router: Router, private db: AngularFireDatabase, private auth: AngularFireAuth, private firestore: AngularFirestore) { 
+  constructor( private router: Router, private db: AngularFireDatabase, private auth: AngularFireAuth, private firestore: AngularFirestore, private toastrService: ToastrService) { 
     this.userObservable = this.user$.asObservable();
-   }
-
-   getUsers(): Observable<User[]> {
-    return this.db.list<User>('users/clients').valueChanges()
    }
 
    userLogin(email: string, password: string): Promise<void> {
@@ -33,7 +30,11 @@ export class UserService {
         this.setUserToLocaleStorage(this.user)
         this.user$.next(this.user)
         console.log(this.user)
+        this.router.navigateByUrl('/')
       })
+    })
+    .catch(errorRespone => {
+      this.toastrService.error(errorRespone, 'Login Faild' )
     })
    }
 
@@ -46,15 +47,22 @@ export class UserService {
         up and returns promise */
         
         // this.SendVerificationMail();
-        this.SetUserData(userInfo, result.user.uid);
+        this.setUserData(userInfo, result.user.uid);
+        this.getUser(result.user.uid).subscribe((userInfo) => {
+          this.user = userInfo;
+          this.setUserToLocaleStorage(this.user)
+          this.user$.next(this.user)
+          console.log(this.user)
+          this.router.navigateByUrl('/')
+        })
       })
-      .catch((error) => {
-        window.alert(error.message);
+      .catch((errorRespone) => {
+        this.toastrService.error(errorRespone, 'Login Faild' )
       });
   }
 
-  SetUserData(user: any, uid: any) {
-    const userRef: AngularFirestoreDocument<any> = this.firestore.doc(
+  setUserData(user: User, uid: any) {
+    const userRef: AngularFirestoreDocument<User> = this.firestore.doc(
       `users/${uid}`
     );
     const userData: User = {
@@ -64,7 +72,6 @@ export class UserService {
       role: user.role,
       emailVerified: user.emailVerified,
     };
-    console.log(userData);
     return userRef.set(userData, {
       merge: true,
     });

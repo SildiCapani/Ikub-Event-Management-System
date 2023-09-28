@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   isSubmitted: boolean = false;
   returnUrl = '';
   showPassword: boolean = false;
+  hide: boolean = false
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {}
 
@@ -27,9 +28,9 @@ export class LoginComponent implements OnInit {
   submit(): void {
     this.isSubmitted = true
     this.userService.userLogin(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value)
-    .then(() => {
-      this.router.navigateByUrl(this.returnUrl);
-    })
+    // .then(() => {
+    //   this.router.navigateByUrl(this.returnUrl);
+    // })
   }
 
   ngOnInit(): void {

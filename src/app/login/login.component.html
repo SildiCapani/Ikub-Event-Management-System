@@ -1,26 +1,43 @@
 <div class="container">
     <div class="details">
         <h2>Login</h2>
-        <form [formGroup]="loginForm" (ngSubmit)="submit()">
+        <form [formGroup]="loginForm">
             <div class="input-container">
                 <label>Email:</label>
                 <div class="content">
                     <input type="email" placeholder="Email" formControlName="email">
                     
                 </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: loginForm.get('email')}"></ng-container>
-                
             
+
             </div>
-            <div class="input-container">
+
+            <div>
+            <mat-form-field class="full-width" appearance="outline">
+                <mat-label>Password</mat-label>
+                <input formControlName="password" matInput [type]=" hide ? 'password' : 'text'" required />
+                <button  mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide Password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>
+                    {{hide ? 'visibility_off' : 'visibility'}}
+                </mat-icon>
+            </button>
+            <mat-error *ngIf="!loginForm.controls['password'].valid">
+                Password is required
+              </mat-error>
+            </mat-form-field>
+            </div>
+
+            <!-- <div class="input-container">
                 <label>Password:</label>
                 <div class="content">
                     <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" formControlName="password">
                     <a class="show-password" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide ' : 'Show ' }}</a>
-                </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: loginForm.get('password')}"></ng-container>
+                </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: loginForm.get('password')}"></ng-container> 
                 
             
-            </div>
-            <button type="submit">Login</button>
+            </div>-->
+            <button class="button" (ngSubmit)="submit()">Login</button>
 
             <ng-template #requiredErrorRef let-control>
                 <span class="input-error" *ngIf="(control?.errors?.required) && isSubmitted" style="color: red;" >Schould not be empty</span>

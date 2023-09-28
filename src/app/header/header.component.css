@@ -15,6 +15,10 @@ a{
     text-decoration: none;
 }
 
+.logo{
+  color: white;
+}
+
 .mat-toolbar{
     padding: 0 10rem 0 3rem;
 }
