@@ -8,30 +8,30 @@
             "date": "2023.09.22",
             "price": 19.99,
             "creator": "Brisild Capani",
-            "last-date": "2023.09.12",
-            "max-attenders": 200
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200
+        },
+        {
+            "id": 1,
+            "title": "Second Event for this Website",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            "image": "location",
+            "date": "2023.09.22",
+            "price": 19.99,
+            "creator": "Brisild Capani",
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200
+        },
+        {
+            "id": 2,
+            "title": "Third Event for this Website",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            "image": "location",
+            "date": "2023.09.22",
+            "price": 19.99,
+            "creator": "Brisild Capani",
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200
         }
-    ],
-    "users": {
-        "admins": [
-
-        ],
-        "organizers": [
-
-        ],
-        "clients": [
-            {
-                "id": 1,
-                "name": "Brisild Capani",
-                "email": "sildi.capani@gmail.com",
-                "password": "sildisildi"
-            },
-            {
-                "id": 2,
-                "name": "Brisild Capani",
-                "email": "sildi.t2004@gmail.com",
-                "password": "sildisildi"
-            }
-        ]
-    }
+    ]
 }

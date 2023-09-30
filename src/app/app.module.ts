@@ -8,7 +8,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -31,6 +31,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpGlobalErrorHandlerInterceptor } from './http-global-error-handler.interceptor';
 
 
 @NgModule({
@@ -70,7 +71,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       newestOnTop: false
     }) 
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpGlobalErrorHandlerInterceptor,
+      multi: true
+
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

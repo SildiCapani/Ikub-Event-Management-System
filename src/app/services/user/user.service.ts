@@ -33,18 +33,17 @@ export class UserService {
         this.router.navigateByUrl('/')
       })
     })
-    .catch(errorRespone => {
-      this.toastrService.error(errorRespone, 'Login Faild' )
-    })
+    .catch((error) => {
+      const errorMessage = this.handleFirebaseError(error);
+      this.toastrService.error(errorMessage, 'Login Faild');
+      console.log(error.code)
+    });
    }
 
    async userSignUp(userInfo: User, password: string): Promise<void> {
     return this.auth
       .createUserWithEmailAndPassword(userInfo.email, password)
       .then((result) => {
-
-        /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */
         
         // this.SendVerificationMail();
         this.setUserData(userInfo, result.user.uid);
@@ -56,8 +55,10 @@ export class UserService {
           this.router.navigateByUrl('/')
         })
       })
-      .catch((errorRespone) => {
-        this.toastrService.error(errorRespone, 'Login Faild' )
+      .catch((error) => {
+        const errorMessage = this.handleFirebaseError(error);
+        this.toastrService.error(errorMessage, 'Register Faild');
+        console.log(error.code)
       });
   }
 
@@ -98,5 +99,25 @@ export class UserService {
     const jsonUser = localStorage.getItem(this.USER_KEY)
     if(jsonUser) return JSON.parse(jsonUser) as User;
     return this.user
+  }
+
+  private handleFirebaseError(error: any): string {
+    // Implement your Firebase Authentication error handling logic here
+    let errorMessage = 'An error occurred during login';
+    // You can check error codes or messages to provide specific error messages
+    switch(error.code) {
+      case'auth/user-not-found':
+      errorMessage = 'User not found'
+      break;
+      
+      case 'auth/invalid-login-credentials' : 
+      errorMessage = 'Invalid login credentials'
+      break;
+    
+      case 'auth/email-already-in-use' : 
+      errorMessage = 'Email already in use'
+      break;
+    } 
+    return errorMessage;
   }
 }

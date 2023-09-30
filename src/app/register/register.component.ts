@@ -16,20 +16,12 @@ export class RegisterComponent implements OnInit {
 
   registerForm!: FormGroup
   isSubmitted: boolean = false;
-  showPassword: boolean = false;
-  showConfirmPassword: boolean = false;
+  hidePassword: boolean = true;
+  hideConfirmPassword: boolean = true;
   returnUrl: string = '';
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private router: Router) {
 
-  }
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword
-  }
-
-  toggleConfirmPasswordVisibility() {
-    this.showConfirmPassword = !this.showConfirmPassword;
   }
 
   submit(): void {
@@ -46,7 +38,7 @@ export class RegisterComponent implements OnInit {
     const password: string = this.registerForm.get('password')?.value
 
     this.userService.userSignUp(user, password)
-    console.log(user)
+    console.log(this.registerForm)
   }
 
   ngOnInit(): void {

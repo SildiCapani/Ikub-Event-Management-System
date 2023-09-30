@@ -3,35 +3,70 @@
         <h2>Register</h2>
         <form [formGroup]="registerForm" (ngSubmit)="submit()">
 
-            <div class="input-container">
-            <label>Full Name:</label>
-                <div class="content">
-                    <input type="text" placeholder="Name" formControlName="name">
-                </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: registerForm.get('name')}"></ng-container>
-            </div>
+            <div>
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Full Name</mat-label>
+                  <input
+                    formControlName="name"
+                    matInput
+                    placeholder="Enter Full Name" required
+                  />
+                  <mat-error *ngIf="!registerForm.controls['name'].valid && isSubmitted">
+                    Field is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
 
-            <div class="input-container">
-                <label>Email:</label>
-                    <div class="content">
-                        <input type="email" placeholder="Email" formControlName="email">
-                    </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: registerForm.get('email')}"></ng-container>
-            </div>
 
-            <div class="input-container">
-                <label>Password:</label>
-                    <div class="content">
-                        <input type="{{ showPassword ? 'text' : 'password' }}" placeholder="Password" formControlName="password">
-                        <a class="show-password" (click)="togglePasswordVisibility()">{{ showPassword ? 'Hide' : 'Show' }}</a>
-                    </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: registerForm.get('password')}"></ng-container>
-            </div>
+            <div class="emailInput">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input
+                    formControlName="email"
+                    matInput
+                    placeholder="Enter email address" required
+                  />
+                  <mat-error *ngIf="!registerForm.controls['email'].valid && isSubmitted">
+                    Email is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
 
-            <div class="input-container">
-                <label>Confirm password:</label>
-                    <div class="content">
-                        <input type="{{ showConfirmPassword ? 'text' : 'password' }}" placeholder="Confirm Password" formControlName="confirmPassword">
-                        <a class="show-password" (click)="toggleConfirmPasswordVisibility()">{{ showConfirmPassword ? 'Hide' : 'Show' }}</a>
-                    </div><ng-container *ngTemplateOutlet="requiredErrorRef; context: { $implicit: registerForm.get('confirmPassword')}"></ng-container>
-            </div>
+              <div>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" matInput [type]=" hidePassword ? 'password' : 'text'" required />
+                    <button  mat-icon-button type="button" matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide Password'"
+                    [attr.aria-pressed]="hidePassword">
+                    <mat-icon>
+                        {{hidePassword ? 'visibility' : 'visibility_off'}}
+                    </mat-icon>
+                </button>
+                
+                <mat-error *ngIf="!registerForm.controls['password'].valid && isSubmitted">
+                    Password is required
+                  </mat-error>
+    
+                </mat-form-field>
+                </div>
+
+                <div>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Confirm password</mat-label>
+                    <input formControlName="confirmPassword" matInput [type]=" hideConfirmPassword ? 'password' : 'text'" required />
+                    <button  mat-icon-button type="button" matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide Password'"
+                    [attr.aria-pressed]="hideConfirmPassword">
+                    <mat-icon>
+                        {{hideConfirmPassword ? 'visibility' : 'visibility_off'}}
+                    </mat-icon>
+                </button>
+                
+                <mat-error *ngIf="!registerForm.controls['confirmPassword'].valid && isSubmitted">
+                    Password confirmation is required
+                  </mat-error>
+    
+                </mat-form-field>
+                </div>
 
 
                 <button class="submit" type="submit" [disabled]="!registerForm.valid">Register</button>

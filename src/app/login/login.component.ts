@@ -16,14 +16,9 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   isSubmitted: boolean = false;
   returnUrl = '';
-  showPassword: boolean = false;
-  hide: boolean = false
+  hidePassword: boolean = true;
 
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {}
-
-  togglePasswordVisibility(): void {
-    this.showPassword = !this.showPassword;
-  }
 
   submit(): void {
     this.isSubmitted = true

@@ -1,7 +1,10 @@
-<p>events works!</p>
+<!-- <p>events works!</p>
 <p>{{user?.email}}</p>
 <p>{{user?.uid}}</p>
-<p>{{user?.role}}</p>
+<p>{{user?.role}}</p> -->
 
+<div *ngFor="let event of Events$ | async">
 
+    <p>{{event.maxAttenders}}</p>
+</div>
 
