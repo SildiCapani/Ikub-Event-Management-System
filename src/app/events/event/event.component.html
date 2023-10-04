@@ -1,1 +1,54 @@
-<p>event works!</p>
+<div *ngIf="event">
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.webp"  alt="Event Image"> <!-- src="{{ event.image }}" -->
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="card-text">{{ event.description }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Event Details</h5>
+            <p>Date: {{ event.date }}</p>
+            <p>Last Date to Register: {{ event.lastDate }}</p>
+            <p>Price: {{ event.price | currency }}</p>
+            <p>Max Attendees: {{ event.maxAttenders }}</p>
+            <p>Registered Attendees: {{ event.registeredAttenders }}</p>
+          </div>
+          <div class="card-footer">
+            <ng-container *ngIf="event.maxAttenders > event.registeredAttenders; else soldOut">
+              <button class="btn btn-primary" (click)="openBookingForm(bookingDialog)">Book Now</button>
+            </ng-container>
+            <ng-template #soldOut>
+              <button class="btn btn-secondary" disabled>Sold Out</button>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Booking Form Dialog -->
+  <ng-template #bookingDialog let-c="close" let-d="dismiss">
+    <mat-dialog-container style="z-index: 1070;">
+    <div class="modal-header">
+      <h4 matDialogTitle>Book Event</h4>
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+      <div class="modal-body">
+        <h4><strong>Do you want to Book for this Event?</strong></h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="d('Close click')">Close</button>
+        <button type="submit" class="btn btn-primary" (click)="bookEvent()" (click)="d('Close click')" >Book</button>
+      </div>
+  </mat-dialog-container>
+  </ng-template>
+</div>

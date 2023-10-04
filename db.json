@@ -9,7 +9,12 @@
             "price": 19.99,
             "creator": "Brisild Capani",
             "lastDate": "2023.09.12",
-            "maxAttenders": 200
+            "maxAttenders": 200,
+            "registeredAttenders": 4,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
         },
         {
             "id": 1,
@@ -20,7 +25,12 @@
             "price": 19.99,
             "creator": "Brisild Capani",
             "lastDate": "2023.09.12",
-            "maxAttenders": 200
+            "maxAttenders": 200,
+            "registeredAttenders": 0,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
         },
         {
             "id": 2,
@@ -31,7 +41,92 @@
             "price": 19.99,
             "creator": "Brisild Capani",
             "lastDate": "2023.09.12",
-            "maxAttenders": 200
+            "maxAttenders": 200,
+            "registeredAttenders": 0,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
+        },
+        {
+            "id": 4,
+            "title": "Third Event for this Website",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            "image": "location",
+            "date": "2023.09.22",
+            "price": 19.99,
+            "creator": "Brisild Capani",
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200,
+            "registeredAttenders": 0,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
+        },
+        {
+            "id": 5,
+            "title": "Third Event for this Website",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            "image": "location",
+            "date": "2023.09.22",
+            "price": 19.99,
+            "creator": "Brisild Capani",
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200,
+            "registeredAttenders": 0,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
+        },
+        {
+            "id": 6,
+            "title": "Third Event for this Website",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            "image": "location",
+            "date": "2023.09.22",
+            "price": 19.99,
+            "creator": "Brisild Capani",
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200,
+            "registeredAttenders": 0,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
+        },
+        {
+            "id": 7,
+            "title": "Third Event for this Website",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            "image": "location",
+            "date": "2023.09.22",
+            "price": 19.99,
+            "creator": "Brisild Capani",
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200,
+            "registeredAttenders": 0,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
+        },
+        {
+            "id": 8,
+            "title": "Third Event for this Website",
+            "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            "image": "location",
+            "date": "2023.09.22",
+            "price": 19.99,
+            "creator": "Brisild Capani",
+            "lastDate": "2023.09.12",
+            "maxAttenders": 200,
+            "registeredAttenders": 0,
+            "namesOfRegisteredAttenders": [
+                "SIldi",
+                "SILDIIII"
+            ]
         }
     ]
 }

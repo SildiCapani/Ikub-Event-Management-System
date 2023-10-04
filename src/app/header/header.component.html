@@ -1,14 +1,12 @@
 <mat-toolbar color="primary" class="mat-toolbar">
     <a routerLink="/" class="logo">Event Management System</a>
     <div class="spacer"></div>
-    <div class="search-box">
-        <input type="text" class="input-search" placeholder="Type to Search...">
-    </div>
-    <button><mat-icon class="mat-icon" fontIcon="search"></mat-icon></button>
+    <app-search></app-search>
     <div class="space"></div>
-        
+        <!-- <a><strong *ngIf="user">{{user.fullName}}</strong></a> -->
      <a routerLink="/login" *ngIf="!user" mat-button>Login</a>
      <a *ngIf="user" (click)="onLogout()" mat-button>Logout</a>
      <div class="spacer"></div>
+     <a><strong *ngIf="user">{{user.fullName}}</strong></a>
 </mat-toolbar>
    

@@ -12,6 +12,8 @@ import { User } from '../models/User';
 export class HeaderComponent {
 
   user?: User
+  searchValue: string = '';
+
 
   constructor(private userService: UserService) {
     userService.userObservable.subscribe(user => this.user = user)

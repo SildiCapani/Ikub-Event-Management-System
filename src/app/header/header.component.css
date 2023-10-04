@@ -20,38 +20,7 @@ a{
 }
 
 .mat-toolbar{
-    padding: 0 10rem 0 3rem;
-}
-
-.search-box{
-    width: fit-content;
-    height: fit-content;
-    position: relative;
-    border-radius: 0px;
-  }
-  .input-search{
-    height: 50px;
-    width: 300px;
-    border-style: none;
-    font-size: 18px;
-    letter-spacing: 2px;
-    outline: none;
-    border-radius: 0px;
-    background-color: transparent;
-    padding-right: 40px;
-    color:#fff;
-    border-bottom:1px solid rgba(255,255,255,.5);
-  }
-  .input-search::placeholder{
-    color:rgba(255,255,255,.5);
-    font-size: 18px;
-    letter-spacing: 2px;
-    font-weight: 100;
-  }
-.mat-icon{
-    font-size: 2rem;
-    height: 100%;
-    width: 3rem;
+    padding: 0 3rem 0 3rem;
 }
 
 button{

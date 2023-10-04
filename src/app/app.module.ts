@@ -19,8 +19,8 @@ import { UsersComponent } from './users/users.component';
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './events/event/event.component';
 import { UserComponent } from './users/user/user.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { RegisterComponent } from './authentication/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HeaderComponent } from './header/header.component';
@@ -32,7 +32,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpGlobalErrorHandlerInterceptor } from './http-global-error-handler.interceptor';
-
+import { MatRippleModule } from '@angular/material/core';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { HttpGlobalErrorHandlerInterceptor } from './http-global-error-handler.i
     RegisterComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +67,7 @@ import { HttpGlobalErrorHandlerInterceptor } from './http-global-error-handler.i
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
+    MatRippleModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass:'toast-bottom-left',

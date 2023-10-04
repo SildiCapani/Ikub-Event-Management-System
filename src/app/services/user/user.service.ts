@@ -45,13 +45,15 @@ export class UserService {
       .createUserWithEmailAndPassword(userInfo.email, password)
       .then((result) => {
         
-        // this.SendVerificationMail();
+        // this.sendVerificationMail();
         this.setUserData(userInfo, result.user.uid);
+        result.user.sendEmailVerification();
+        // this.listenToEmailVerification();
+
         this.getUser(result.user.uid).subscribe((userInfo) => {
           this.user = userInfo;
           this.setUserToLocaleStorage(this.user)
           this.user$.next(this.user)
-          console.log(this.user)
           this.router.navigateByUrl('/')
         })
       })
@@ -82,12 +84,46 @@ export class UserService {
     return this.firestore.doc<User>(`users/${uid}`).valueChanges() ;
   }
 
+    // // Send email verfificaiton when new user sign up
+    // sendVerificationMail() {
+    //   return this.auth.currentUser
+    //     .then((u: any) => u.sendEmailVerification())
+    //     .then(() => {
+    //       this.router.navigate(['verify-email-address']);
+    //     });
+    // }
+
+    //     // Listen to changes in the user's authentication state
+    // listenToEmailVerification() {
+    //   this.auth.onAuthStateChanged((user) => {
+    //     if (user) {
+    //       user.getIdTokenResult().then((idTokenResult) => {
+    //         if (idTokenResult && idTokenResult.claims.email_verified) {
+    //           // If email is verified, update Firestore document
+    //           this.updateEmailVerificationStatus(user.uid, true);
+    //         }
+    //       });
+    //     }
+    //   });
+    // }
+
+    // // Update email verification status in Firestore
+    // updateEmailVerificationStatus(userId: string, isVerified: boolean) {
+    //   this.firestore.collection('users').doc(userId).update({ emailVerified: isVerified })
+    //     .then(() => {
+    //       console.log('Email verification status updated in Firestore');
+    //     })
+    //     .catch((error) => {
+    //       console.error('Error updating email verification status:', error);
+    //     });
+    // }
+
 
   onLogout(): Promise<void> {
     return this.auth.signOut()
     .then(() => {
       localStorage.removeItem(this.USER_KEY);
-      this.router.navigateByUrl('/login')
+      window.location.reload()
     })
   }
 

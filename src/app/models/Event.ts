@@ -6,6 +6,8 @@ export interface Event {
     image: string,
     lastDate: string,
     maxAttenders: number,
+    registeredAttenders: number,
+    namesOfRegisteredAttenders: []
     price: number,
     title: string
 }

@@ -1,10 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Event } from 'src/app/models/Event';
+import { EventsService } from 'src/app/services/events/events.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { User } from 'src/app/models/User';
+import { UserService } from 'src/app/services/user/user.service';
+import { ToastrService } from 'ngx-toastr';
+import { SearchService } from 'src/app/services/search/search.service';
+
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
+  styleUrls: ['./event.component.scss']
 })
-export class EventComponent {
+
+
+
+export class EventComponent implements OnInit {
+
+  eventId: string;
+  event: Event;
+  user: User;
+
+  constructor(private eventService: EventsService, private route: ActivatedRoute, private modalService: NgbModal, private userService: UserService, private router: Router, private searchService: SearchService) {}
+
+  openBookingForm(bookingDialog: TemplateRef<any>) {
+    this.modalService.open(bookingDialog);
+  }
+
+  bookEvent(): void {
+    this.eventService.registerForEvent(this.eventId,this.user.fullName)
+    this.router.navigateByUrl('/')
+
+  }
+
+  ngOnInit(): void {
+      this.eventId = this.route.snapshot.paramMap.get('id')
+      this.eventService.getEventById(this.eventId).subscribe(event => this.event = event)
+      this.userService.userObservable.subscribe(user => this.user = user)
+  }
 
 }
