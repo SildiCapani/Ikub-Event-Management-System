@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './events/event/event.component';
 import { LoginComponent } from './authentication/login/login.component';
@@ -29,7 +28,7 @@ const routes: Routes = [
     path: 'dashboard',
     canLoad: [RoleGuard],
     loadChildren: () => {
-      return import('./dashboard/dashboard.module').then(
+      return import('./modules/dashboard/dashboard.module').then(
         module => module.DashboardModule
       )
     }

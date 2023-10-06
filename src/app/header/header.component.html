@@ -4,9 +4,10 @@
     <app-search></app-search>
     <div class="space"></div>
         <!-- <a><strong *ngIf="user">{{user.fullName}}</strong></a> -->
-     <a routerLink="/login" *ngIf="!user" mat-button>Login</a>
-     <a *ngIf="user" (click)="onLogout()" mat-button>Logout</a>
+     <a routerLink="/login" *ngIf="!user" mat-button>Login |</a>
+     <a *ngIf="user" (click)="onLogout()" mat-button>Logout |</a>
+     <a routerLink="dashboard" class="logo">Dashboard</a>
      <div class="spacer"></div>
-     <a><strong *ngIf="user">{{user.fullName}}</strong></a>
+     <a><strong *ngIf="user"> {{user.fullName}}</strong></a>
 </mat-toolbar>
    
