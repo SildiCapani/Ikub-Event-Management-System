@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EventsComponent } from './events/events.component';
-import { EventComponent } from './events/event/event.component';
-import { LoginComponent } from './authentication/login/login.component';
-import { RegisterComponent } from './authentication/register/register.component';
-import { RoleGuard } from './guards/role.guard';
+import { LoginComponent } from './core/authentication/login/login.component';
+import { RegisterComponent } from './core/authentication/register/register.component';
+import { RoleGuard } from './core/guards/role.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: EventsComponent
+    redirectTo: 'home',
+    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -20,9 +19,9 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
-  {
-    path: 'event/:id',
-    component: EventComponent
+  { path: 'home', 
+    loadChildren: () => import('./modules/home/home.module')
+    .then((m) => m.HomeModule) 
   },
   {
     path: 'dashboard',

@@ -16,14 +16,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 
 
 import { UsersComponent } from './users/users.component';
-import { EventsComponent } from './events/events.component';
-import { EventComponent } from './events/event/event.component';
 import { UserComponent } from './users/user/user.component';
-import { LoginComponent } from './authentication/login/login.component';
-import { RegisterComponent } from './authentication/register/register.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
+import { DashboardComponent } from './modules/dashboard/dashboard-comp/dashboard.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { HeaderComponent } from './header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -33,32 +28,26 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpGlobalErrorHandlerInterceptor } from './http-global-error-handler.interceptor';
 import { MatRippleModule } from '@angular/material/core';
-import { SearchComponent } from './search/search.component';
+import { HomeModule } from './modules/home/home.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     UsersComponent,
-    EventsComponent,
-    EventComponent,
     UserComponent,
-    LoginComponent,
-    RegisterComponent,
     DashboardComponent,
     PageNotFoundComponent,
-    HeaderComponent,
-    SearchComponent
   ],
   imports: [
     BrowserModule,
+    CoreModule,
     AppRoutingModule,
     HttpClientModule,
     MatToolbarModule,
     MatButtonModule,
-    MatInputModule,
     NgbModule,
     NgbAlertModule,
-    MatIconModule,
     FormsModule, 
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
@@ -68,11 +57,13 @@ import { SearchComponent } from './search/search.component';
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     MatRippleModule,
+    HomeModule,
+    
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass:'toast-bottom-left',
       newestOnTop: false
-    }) 
+    })  
   ],
   providers: [
     {

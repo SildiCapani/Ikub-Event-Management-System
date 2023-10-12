@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/User';
+import { User } from 'src/app/core/models/User';
 import { Observable} from 'rxjs';
-import { Event } from 'src/app/models/Event';
-import { EventsService } from 'src/app/services/events/events.service';
-import { SearchService } from 'src/app/services/search/search.service';
+import { Event, Events } from 'src/app/core/models/Event';
+import { EventsService } from 'src/app/core/services/events/events.service';
+import { SearchService } from 'src/app/core/services/search/search.service';
 
 @Component({
   selector: 'app-events',
@@ -15,7 +15,7 @@ import { SearchService } from 'src/app/services/search/search.service';
 export class EventsComponent implements OnInit {
   
   user?: User;
-  Events$: Observable<Event[]> = this.eventsService.getEventsData()
+  events$: Observable<Event[]> = this.eventsService.getEventsData()
   search?: string;
   Events: Event[]
   
@@ -32,7 +32,7 @@ export class EventsComponent implements OnInit {
       this.search = searchValue
       this.eventsService.getEventsData().subscribe( searchedEvents => {
         if(this.search){
-          this.Events = searchedEvents.filter(item => item.title.toLocaleLowerCase().includes(this.search.toLocaleLowerCase()))
+          this.Events = searchedEvents.filter(item => item.data.title.toLocaleLowerCase().includes(this.search.toLocaleLowerCase()))
         } else {
           this.Events = searchedEvents
         }

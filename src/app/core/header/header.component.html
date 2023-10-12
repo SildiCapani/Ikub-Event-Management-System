@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="mat-toolbar">
+    <a routerLink="/" class="logo">Event Management System</a>
+    <div class="spacer"></div>
+    
+    <a routerLink="dashboard" class="logo">Dashboard</a> 
+    <div style="width: 20px;"></div>
+    <a routerLink="/login" *ngIf="!user" mat-button>Login </a>
+    <a *ngIf="user" (click)="onLogout()" mat-button>Logout </a>
+    <div style="width: 20px;"></div>
+    <a><strong *ngIf="user"> {{user.fullName}}</strong></a>
+</mat-toolbar>
+   
