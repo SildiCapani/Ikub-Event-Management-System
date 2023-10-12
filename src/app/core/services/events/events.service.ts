@@ -25,7 +25,7 @@ export class EventsService {
   }
 
   registerForEvent(id: string,fullName: string): void {
-    const tutRef = this.db.object(`events/${id}`);
+    const tutRef = this.db.object(`events/${id}/data`);
 
     // Fetch the current data from the database
     const subscription = tutRef.valueChanges().subscribe((event: any) => {
@@ -59,19 +59,6 @@ export class EventsService {
       this.toastrService.success("Event has been updated")
       this.router.navigateByUrl('/dashboard')
     })
-  }
-
-  getHighestEventId(): Observable<number> {
-    return this.db.list('events', (ref) => ref.orderByChild('id').limitToLast(1))
-      .valueChanges()
-      .pipe(
-        map((events: any[]) => {
-          if (events.length === 0) {
-            return 0; // No existing events
-          }
-          return events[0].id;
-        })
-      );
   }
 
   createEvent(data: any): void {

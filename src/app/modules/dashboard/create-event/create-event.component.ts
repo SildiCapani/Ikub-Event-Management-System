@@ -20,7 +20,6 @@ export class CreateEventComponent {
 
   constructor(private eventsService: EventsService, private userService: UserService, private datePipe: DatePipe) {
     this.userService.userObservable.subscribe(user => this.user = user);
-    this.eventsService.getHighestEventId().subscribe(id => this.maxId = id)
 
     this.eventForm = new FormGroup({
       title: new FormControl('', Validators.required),
@@ -47,7 +46,8 @@ export class CreateEventComponent {
       image: this.eventForm.get('image').value,
       lastDate: this.getDateValue(this.eventForm.get('lastDate').value),
       maxAttenders: this.eventForm.get('maxAttenders').value,
-      namesOfRegisteredAttenders: [],
+      registeredAttenders: 0,
+      namesOfRegisteredAttenders: { 0: ""},
       price: this.eventForm.get('price').value,
       title: this.eventForm.get('title').value
     }
