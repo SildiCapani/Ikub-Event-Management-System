@@ -7,6 +7,6 @@
     <a routerLink="/login" *ngIf="!user" mat-button>Login </a>
     <a *ngIf="user" (click)="onLogout()" mat-button>Logout </a>
     <div style="width: 20px;"></div>
-    <a><strong *ngIf="user"> {{user.fullName}}</strong></a>
+    <a *ngIf="user" routerLink="home/user/profile"><strong > {{user.fullName}}</strong></a>
 </mat-toolbar>
    

@@ -3,21 +3,26 @@ import { CommonModule } from '@angular/common';
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './events/event/event.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatRippleModule } from '@angular/material/core';
 import { CoreModule } from 'src/app/core/core.module';
+import { UsersComponent } from './users/users.component';
+import { UserComponent } from './user/user.component';
+import { MatIconModule } from '@angular/material/icon';
 
 
 
 @NgModule({
   declarations: [
     EventsComponent,
-    EventComponent
+    EventComponent,
+    UsersComponent,
+    UserComponent
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     MatRippleModule,
+    MatIconModule,
     CoreModule
   ]
 })

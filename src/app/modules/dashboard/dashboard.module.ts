@@ -11,6 +11,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
+import { MatIconModule } from '@angular/material/icon';
+import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -26,9 +29,11 @@ import { ToastrModule } from 'ngx-toastr';
     MatFormFieldModule,
     MatDatepickerModule,
     ReactiveFormsModule,
+    NgbDatepickerModule,
     MatInputModule,
     MatButtonModule,
     MatNativeDateModule,
+    MatIconModule,
     ToastrModule.forRoot()
   ],
   providers: [DatePipe]

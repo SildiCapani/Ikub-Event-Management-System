@@ -1,0 +1,80 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    margin-top: 3rem;
+    .details{
+        width: 28rem;
+
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    .submit{
+        font-size: 1.1rem;
+        background-color: #3f51b5;
+        color: white;
+        width: 10rem;
+        align-self: center;
+        border: none;
+        border-radius: 10rem;
+        padding: 0.7rem 1rem;
+        margin: 1rem;
+        opacity: 0.8;
+      
+      
+      &:hover{
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+
+    mat-card {
+        max-width: 600px;
+        margin: 2em auto;
+        text-align: center;
+        max-height: 600px;
+      }
+      
+      .header{
+        text-align: center;
+      
+      }
+      .full-width {
+        width: 100%;
+      }
+      
+      .button-row {
+        padding-top: 5px;
+      }
+      
+      .button-row a {
+        margin-right: 8px;
+        text-align: center;
+      }
+      
+      .forget-password{
+        padding-left: 0px;
+      }
+      
+      .emailInput{
+        padding-top: 10px;
+      }
+      
+      .contentBody {
+        padding: 60px 1rem;
+        background :#1b6ca8;
+        display: block;
+      }
+      
+      .aLink{
+        float: right;
+        padding-right: 60px;
+        text-decoration: none;
+      }
+
+}

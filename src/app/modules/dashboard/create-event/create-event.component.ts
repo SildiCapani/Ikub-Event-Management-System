@@ -1,6 +1,7 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/core/models/User';
 import { EventsService } from 'src/app/core/services/events/events.service';
 import { UserService } from 'src/app/core/services/user/user.service';
@@ -15,16 +16,18 @@ import { UserService } from 'src/app/core/services/user/user.service';
 export class CreateEventComponent {
 
   eventForm: FormGroup;
-  user: User
-  maxId: number
+  user: User;
+  maxId: number;
+  model: NgbDateStruct;
+  selectedImage: File | null = null;
 
-  constructor(private eventsService: EventsService, private userService: UserService, private datePipe: DatePipe) {
+  constructor(private eventsService: EventsService, private userService: UserService, private datePipe: DatePipe, private location: Location) {
     this.userService.userObservable.subscribe(user => this.user = user);
 
     this.eventForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
-      image: new FormControl('', Validators.required),
+      image: new FormControl('',),
       date: new FormControl(new Date(), [Validators.required]),
       price: new FormControl(0, [Validators.required, Validators.min(1)]),
       lastDate: new FormControl(new Date(), Validators.required),
@@ -36,14 +39,24 @@ export class CreateEventComponent {
     return this.datePipe.transform(value, 'yyyy-MM-dd');
   }
 
+  onImageSelected(event: any): void {
+    const fileList: FileList = event.target.files;
+    
+    if (fileList.length > 0) {
+      this.selectedImage = fileList[0];
+    }
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
+  
   onSubmit(): void {
 
-    
       const eventData = {
       creator: this.user.fullName,
       date: this.getDateValue(this.eventForm.get('date').value),
       description: this.eventForm.get('description').value,
-      image: this.eventForm.get('image').value,
       lastDate: this.getDateValue(this.eventForm.get('lastDate').value),
       maxAttenders: this.eventForm.get('maxAttenders').value,
       registeredAttenders: 0,
@@ -52,6 +65,6 @@ export class CreateEventComponent {
       title: this.eventForm.get('title').value
     }
     
-    this.eventsService.createEvent(eventData)
+    this.eventsService.createEvent(eventData, this.selectedImage)
   }
 }

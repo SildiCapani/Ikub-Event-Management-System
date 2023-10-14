@@ -5,8 +5,7 @@ import { EventsService } from 'src/app/core/services/events/events.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/core/models/User';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { ToastrService } from 'ngx-toastr';
-import { SearchService } from 'src/app/core/services/search/search.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -23,7 +22,13 @@ export class EventComponent implements OnInit {
   event: Event;
   user: User;
 
-  constructor(private eventService: EventsService, private route: ActivatedRoute, private modalService: NgbModal, private userService: UserService, private router: Router, private searchService: SearchService) {}
+  constructor(
+    private eventService: EventsService, 
+    private route: ActivatedRoute, 
+    private modalService: NgbModal, 
+    private userService: UserService, 
+    private router: Router, 
+    private location: Location) {}
 
   openBookingForm(bookingDialog: TemplateRef<any>) {
     this.modalService.open(bookingDialog);
@@ -32,7 +37,10 @@ export class EventComponent implements OnInit {
   bookEvent(): void {
     this.eventService.registerForEvent(this.eventId,this.user.fullName)
     this.router.navigateByUrl('/')
+  }
 
+  goBack(): void {
+    this.location.back();
   }
 
   ngOnInit(): void {

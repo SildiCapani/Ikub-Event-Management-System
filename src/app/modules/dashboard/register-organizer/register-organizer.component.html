@@ -1,1 +1,81 @@
-<p>register-organizer works!</p>
+<div class="container">
+    <div class="details">
+        <h2>Register a Organizer</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="submit()">
+
+            <div>
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Full Name</mat-label>
+                  <input
+                    formControlName="name"
+                    matInput
+                    placeholder="Enter Full Name" required
+                  />
+                  <mat-error *ngIf="!registerForm.controls['name'].valid && isSubmitted">
+                    Field is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+
+            <div class="emailInput">
+                <mat-form-field class="full-width" appearance="outline">
+                  <mat-label>Email</mat-label>
+                  <input
+                    formControlName="email"
+                    matInput
+                    placeholder="Enter email address" required
+                  />
+                  <mat-error *ngIf="!registerForm.controls['email'].valid && isSubmitted">
+                    Email is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input formControlName="password" matInput [type]=" hidePassword ? 'password' : 'text'" required />
+                    <button  mat-icon-button type="button" matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide Password'"
+                    [attr.aria-pressed]="hidePassword">
+                    <mat-icon>
+                        {{hidePassword ? 'visibility' : 'visibility_off'}}
+                    </mat-icon>
+                </button>
+                
+                <mat-error *ngIf="!registerForm.controls['password'].valid && isSubmitted">
+                    Password is required
+                  </mat-error>
+    
+                </mat-form-field>
+                </div>
+
+                <div>
+                <mat-form-field class="full-width" appearance="outline">
+                    <mat-label>Confirm password</mat-label>
+                    <input formControlName="confirmPassword" matInput [type]=" hideConfirmPassword ? 'password' : 'text'" required />
+                    <button  mat-icon-button type="button" matSuffix (click)="hideConfirmPassword = !hideConfirmPassword" [attr.aria-label]="'Hide Password'"
+                    [attr.aria-pressed]="hideConfirmPassword">
+                    <mat-icon>
+                        {{hideConfirmPassword ? 'visibility' : 'visibility_off'}}
+                    </mat-icon>
+                </button>
+                
+                <mat-error *ngIf="!registerForm.controls['confirmPassword'].valid && isSubmitted">
+                    Password confirmation is required
+                  </mat-error>
+    
+                </mat-form-field>
+                </div>
+
+
+                <button class="submit" type="submit" [disabled]="!registerForm.valid">Register</button>
+
+                <ng-template #requiredErrorRef let-control>
+                    <span class="input-error" *ngIf="(control?.errors?.required) && isSubmitted" style="color: red;" >Schould not be empty</span>
+                    <span *ngIf="(control?.errors?.email) && isSubmitted" style="color: red;" >Email is not correct</span>
+                    <span *ngIf="(control?.errors?.minlength) && isSubmitted" style="color: red;" >length not correct, you need to add minimum {{control?.errors?.['minlength']?.requiredLength}} characters! </span>
+                </ng-template>
+        </form>
+    </div>
+</div>

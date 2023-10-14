@@ -3,13 +3,13 @@
 </div>
 
 <div class="row">
-    <div *ngFor="let event of Events" class="main-events col-lg-4 col-md-12 mb-4" >
+    <a routerLink="details/{{event.data.id}}" style="text-decoration: none;" *ngFor="let event of Events" class="main-events col-lg-4 col-md-12 mb-4" >
 
             <!-- Card Wider -->
             <div class="card card-cascade wider">
               <!-- Card image -->
               <div class="view view-cascade overlay" matRipple>
-                <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/photo6.webp" alt="Card image cap">
+                <img class="card-img-top" src="{{event.data.image}}" alt="Card image cap">
               </div>
     
               <!-- Card content -->
@@ -22,15 +22,19 @@
                 <h5 class="blue-text pb-2"><strong>{{event.data.date | date}}</strong></h5>
                 <!-- Text -->
                 <p class="card-text">
-                    {{event.data.description}}
+                    {{event.data.description.length > 100 ? (event.data.description | slice:0:100) + "..." : event.data.description }}
                 </p>
     
-                <a mat-raised-button color="primary" style="text-decoration: none;" href="home/{{event.data.id}}">Book</a>
+                
                 <!-- Card footer -->
                 <div class="card-footer text-muted text-center mt-4">{{event.data.lastDate}} left</div>
               </div>
             </div>
             <!-- Card Wider -->
-          </div>
+          </a>
     
+          <div *ngIf="Events.length == 0">
+            <p>No Events found</p>
+          </div>
+
        </div>

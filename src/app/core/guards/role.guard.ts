@@ -25,7 +25,7 @@ export class RoleGuard implements CanLoad {
     
     canLoad(route: Route): boolean {
         const user = this.getUserFromLocalStorage()
-        if(user?.role == "organizer") {
+        if(user?.role == "organizer" || user?.role == "admin") {
             return true
         } else if (user) {
             this.toastrService.warning('Not Authorized!')

@@ -7,7 +7,7 @@ export interface Event {
     lastDate: string,
     maxAttenders: number,
     registeredAttenders: number,
-    namesOfRegisteredAttenders: []
+    namesOfRegisteredAttenders: string[]
     price: number,
     title: string
 }

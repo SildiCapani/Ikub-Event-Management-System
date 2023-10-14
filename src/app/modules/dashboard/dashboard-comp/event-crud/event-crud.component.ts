@@ -1,11 +1,10 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Event } from 'src/app/core/models/Event';
-import { User } from 'src/app/core/models/User';
 import { EventsService } from 'src/app/core/services/events/events.service';
-import { UserService } from 'src/app/core/services/user/user.service';
 
 @Component({
   selector: 'app-event-crud',
@@ -19,7 +18,7 @@ export class EventCrudComponent implements OnInit {
   eventData: Event
   eventId: string;
   eventForm: FormGroup;
-  constructor(private route: ActivatedRoute, private eventsService: EventsService, private toastr: ToastrService) {
+  constructor(private route: ActivatedRoute, private eventsService: EventsService, private toastr: ToastrService, private location: Location) {
     
     this.eventForm = new FormGroup({
       title: new FormControl('', Validators.required),
@@ -42,6 +41,10 @@ export class EventCrudComponent implements OnInit {
       this.toastr.error("Invalid Form pleas check your inputs", "Invalid Form")
     }
     
+  }
+
+  goBack(): void {
+    this.location.back()
   }
 
   setFormValues() {

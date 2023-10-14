@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'events',
     pathMatch: 'full'
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent
   },
-  { path: 'home', 
+  { path: 'events', 
     loadChildren: () => import('./modules/home/home.module')
     .then((m) => m.HomeModule) 
   },

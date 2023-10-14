@@ -47,7 +47,7 @@ export class UserService {
         
         // this.sendVerificationMail();
         this.setUserData(userInfo, result.user.uid);
-        result.user.sendEmailVerification();
+        // result.user.sendEmailVerification();
         // this.listenToEmailVerification();
 
         this.getUser(result.user.uid).subscribe((userInfo) => {
