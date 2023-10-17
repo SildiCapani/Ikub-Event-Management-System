@@ -25,8 +25,8 @@ export class CreateEventComponent {
     this.userService.userObservable.subscribe(user => this.user = user);
 
     this.eventForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
+      title: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      description: new FormControl('', [Validators.required, Validators.minLength(50)]),
       image: new FormControl('',),
       date: new FormControl(new Date(), [Validators.required]),
       price: new FormControl(0, [Validators.required, Validators.min(1)]),

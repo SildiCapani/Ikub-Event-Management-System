@@ -4,6 +4,7 @@ import { LoginComponent } from './core/authentication/login/login.component';
 import { RegisterComponent } from './core/authentication/register/register.component';
 import { RoleGuard } from './core/guards/role.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ForgotPasswordComponent } from './core/authentication/forgot-password/forgot-password.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'forgot-password',
+    component: ForgotPasswordComponent
   },
   { path: 'events', 
     loadChildren: () => import('./modules/home/home.module')

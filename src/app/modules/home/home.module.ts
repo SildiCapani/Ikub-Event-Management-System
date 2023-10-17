@@ -8,6 +8,7 @@ import { CoreModule } from 'src/app/core/core.module';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -23,7 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     HomeRoutingModule,
     MatRippleModule,
     MatIconModule,
-    CoreModule
+    CoreModule,
+    ReactiveFormsModule
   ]
 })
 export class HomeModule { }

@@ -32,6 +32,9 @@ export class RegisterComponent implements OnInit {
       fullName: this.registerForm.get('name')?.value,
       email: this.registerForm.get('email')?.value,
       role: 'costumer',
+      age: this.registerForm.get('age')?.value,
+      address: this.registerForm.get('address')?.value,
+      phoneNumber: this.registerForm.get('phoneNumber')?.value,
       emailVerified: false
     }
 
@@ -45,6 +48,9 @@ export class RegisterComponent implements OnInit {
       this.registerForm = new FormGroup({
         name: new FormControl('', [Validators.required, Validators.minLength(4)]),
         email: new FormControl('', [Validators.email, Validators.required]),
+        age: new FormControl(0, [Validators.required, Validators.minLength(2)]),
+        address: new FormControl('', Validators.required),
+        phoneNumber: new FormControl(0, [Validators.required, Validators.minLength(10)]),
         password: new FormControl('', [Validators.required, Validators.minLength(8)]),
         confirmPassword: new FormControl('', [Validators.required])
       },

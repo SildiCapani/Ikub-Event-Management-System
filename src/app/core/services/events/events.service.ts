@@ -21,9 +21,11 @@ export class EventsService {
     return this.db.list<any>('events').valueChanges()
   }
 
+  
   getEventById(id: string): Observable<Event> {
     return this.db.object<Event>(`events/${id}/data`).valueChanges()
   }
+
 
   registerForEvent(id: string,fullName: string): void {
     const tutRef = this.db.object(`events/${id}/data`);
@@ -39,9 +41,9 @@ export class EventsService {
           registeredAttenders: updatedRegisteredAttenders,
           namesOfRegisteredAttenders: updatedNamesOfRegisteredAttenders
         }).then(() => {
-          console.log(`Successfully updated event with ID ${id}`);
+          this.toastrService.success('Registration succeed')
         }).catch((error) => {
-          console.error(`Error updating event: ${error}`);
+          this.toastrService.error(`Error updating event: ${error}`);
         })
 
         subscription.unsubscribe();
@@ -53,6 +55,7 @@ export class EventsService {
     });
   }
 
+  
   updateEvent(id: string,data: Event): void {
     const event = this.db.object(`events/${id}/data`)
     event.update(data)
@@ -62,6 +65,7 @@ export class EventsService {
     })
   }
 
+  
   createEvent(data: any, imageFile: File): void {
     const event = this.db.list(`events`).push({data}).key
     this.uploadImageAndSaveData(data, imageFile, event);
@@ -72,6 +76,7 @@ export class EventsService {
     })
   }
 
+  
   
   private uploadImageAndSaveData(eventData: any, imageFile: File, eventId: string): void {
     if (imageFile) {

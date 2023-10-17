@@ -64,6 +64,14 @@ export class UserService {
       });
   }
 
+  updateUserData(user: any, uid: string): Promise<void> {
+    const userRef: AngularFirestoreDocument<User> = this.firestore.doc(
+      `users/${uid}`
+    );
+
+    return userRef.update(user)
+  }
+
   setUserData(user: User, uid: any) {
     const userRef: AngularFirestoreDocument<User> = this.firestore.doc(
       `users/${uid}`
@@ -73,6 +81,9 @@ export class UserService {
       email: user.email,
       fullName: user.fullName,
       role: user.role,
+      age: user.age,
+      address: user.address,
+      phoneNumber: user.phoneNumber,
       emailVerified: user.emailVerified,
     };
     return userRef.set(userData, {
@@ -117,6 +128,18 @@ export class UserService {
     //       console.error('Error updating email verification status:', error);
     //     });
     // }
+
+
+    ForgotPassword(passwordResetEmail: string) {
+      return this.auth
+        .sendPasswordResetEmail(passwordResetEmail)
+        .then(() => {
+          window.alert('Password reset email sent, check your inbox.');
+        })
+        .catch((error) => {
+          window.alert(error);
+        });
+    }
 
 
   onLogout(): Promise<void> {

@@ -13,7 +13,7 @@ const routes: Routes = [
     component: EventComponent
   },
   {
-    path: 'user/:id',
+    path: 'user/profile',
     component: UserComponent
   }
 ];

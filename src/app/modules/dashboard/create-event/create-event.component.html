@@ -26,7 +26,7 @@
         <div class="form-group">
                 <mat-label>Image URL</mat-label><br/>
                 
-                <input lass="form-control" mat-raised-button  (change)="onImageSelected($event)"  #fileInput type="file">
+                <input lass="form-control" mat-raised-button id="image"  (change)="onImageSelected($event)"  #fileInput type="file">
         </div>
 
         
@@ -67,19 +67,19 @@
         <div class="form-group">
             
               <mat-label>Price</mat-label>
-              <input class="form-control" formControlName="price" placeholder="Event Price">
+              <input type="number" class="form-control" formControlName="price" placeholder="Event Price">
             
           </div>
   
             <div class="form-group">
                 
                   <mat-label>Max Attendees</mat-label>
-                  <input class="form-control" formControlName="maxAttenders" placeholder="Max Attendees">
+                  <input type="number" class="form-control" formControlName="maxAttenders" placeholder="Max Attendees">
                 
               </div>
   
               <div class="form-group text-center">
-                <button mat-raised-button color="primary" type="submit" [disabled]="!eventForm.valid">Save</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!eventForm.valid || !fileInput.files.length">Save</button>
               </div>
         </form>
     </div>  

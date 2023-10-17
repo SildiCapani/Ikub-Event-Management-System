@@ -27,7 +27,14 @@
     
                 
                 <!-- Card footer -->
-                <div class="card-footer text-muted text-center mt-4">{{event.data.lastDate}} left</div>
+                <div class="card-footer text-muted text-center mt-4">
+                  <ng-container *ngIf="calculateDaysLeft(event.data.lastDate) > 0; else noMoreTime">
+                  {{calculateDaysLeft(event.data.lastDate)}} Days left for registration
+                  </ng-container>
+                  <ng-template #noMoreTime>
+                    Registration time exprired
+                  </ng-template>
+                </div>
               </div>
             </div>
             <!-- Card Wider -->

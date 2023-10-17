@@ -3,5 +3,8 @@ export interface User {
     fullName: string,
     email: string,
     role: string,
-    emailVerified: boolean
+    emailVerified: boolean,
+    phoneNumber: number,
+    age: number,
+    address: string
 }

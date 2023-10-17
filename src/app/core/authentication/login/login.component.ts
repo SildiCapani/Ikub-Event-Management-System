@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   returnUrl = '';
   hidePassword: boolean = true;
 
-  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private router: Router) {}
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService, private location: Location) {}
 
   submit(): void {
     this.isSubmitted = true
@@ -26,6 +27,10 @@ export class LoginComponent implements OnInit {
     // .then(() => {
     //   this.router.navigateByUrl(this.returnUrl);
     // })
+  }
+
+  goBack() :void {
+    this.location.back()
   }
 
   ngOnInit(): void {
