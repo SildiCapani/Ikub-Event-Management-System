@@ -8,12 +8,15 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 
 
 
@@ -31,6 +34,7 @@ import { MatRippleModule } from '@angular/material/core';
 import { HomeModule } from './modules/home/home.module';
 import { CoreModule } from './core/core.module';
 import { DashboardComponent } from './modules/dashboard/dashboard-comp/dashboard.component';
+import { HttpLoaderFactory } from './core/const/loader-factory';
 
 
 @NgModule({
@@ -60,6 +64,14 @@ import { DashboardComponent } from './modules/dashboard/dashboard-comp/dashboard
     MatRippleModule,
     MatTabsModule,
     HomeModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    }),
     
     ToastrModule.forRoot({
       timeOut: 3000,

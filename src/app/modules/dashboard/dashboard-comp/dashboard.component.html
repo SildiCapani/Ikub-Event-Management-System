@@ -6,7 +6,7 @@
       *ngIf="user.role == 'organizer'"
       routerLink="create-event"
     >
-      Create Event
+    {{ 'createEvent' | translate }}
     </button>
     <button
       mat-raised-button
@@ -14,39 +14,39 @@
       routerLink="register-organizer"
       class="demo-button"
     >
-      Register Organizer
+    {{ 'registerOrg' | translate }}
     </button>
   </div>
 
   <mat-tab-group>
-    <mat-tab label="All Events">
+    <mat-tab label="{{ 'allEvents' | translate }}">
       <table
         mat-table
         [dataSource]="events$ | async"
         class="mat-elevation-z8 demo-table"
       >
         <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'title' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.title }}</td>
         </ng-container>
 
         <ng-container matColumnDef="lastDate">
-          <th mat-header-cell *matHeaderCellDef>Last date</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'lastDateToRegister' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.lastDate }}</td>
         </ng-container>
 
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'date' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.date }}</td>
         </ng-container>
 
         <ng-container matColumnDef="maxAttenders">
-          <th mat-header-cell *matHeaderCellDef>Max attenders</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'maxAtt' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.maxAttenders }}</td>
         </ng-container>
 
         <ng-container matColumnDef="registeredAttenders">
-          <th mat-header-cell *matHeaderCellDef>Registered attenders</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'registeredAtt' | translate }}</th>
           <td mat-cell *matCellDef="let element">
             {{ element.registeredAttenders }}
           </td> </ng-container
@@ -60,10 +60,10 @@
               color="primary"
               routerLink="event-crud/{{ element.id }}"
               [disabled]="
-                !(element.creator == user.fullName) || element.role != organizer
+                !(element.creator == user.uid) || element.role != organizer
               "
             >
-              Modify
+            {{ 'modify' | translate }}
             </button>
           </td>
         </ng-container>
@@ -73,34 +73,34 @@
       </table>
     </mat-tab>
 
-    <mat-tab label="My Events">
+    <mat-tab label="{{ 'myEvents' | translate }}">
       <table
         mat-table
         [dataSource]="myEvents$ | async"
         class="mat-elevation-z8 demo-table"
       >
         <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'title' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.title }}</td>
         </ng-container>
 
         <ng-container matColumnDef="lastDate">
-          <th mat-header-cell *matHeaderCellDef>Last date</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'lastDateToRegister' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.lastDate }}</td>
         </ng-container>
 
         <ng-container matColumnDef="date">
-          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'date' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.date }}</td>
         </ng-container>
 
         <ng-container matColumnDef="maxAttenders">
-          <th mat-header-cell *matHeaderCellDef>Max attenders</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'maxAtt' | translate }}</th>
           <td mat-cell *matCellDef="let element">{{ element.maxAttenders }}</td>
         </ng-container>
 
         <ng-container matColumnDef="registeredAttenders">
-          <th mat-header-cell *matHeaderCellDef>Registered attenders</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'registeredAtt' | translate }}</th>
           <td mat-cell *matCellDef="let element">
             {{ element.registeredAttenders }}
           </td> </ng-container
@@ -117,7 +117,7 @@
                 !(element.creator == user.fullName) || element.role != organizer
               "
             >
-              Modify
+            {{ 'modify' | translate }}
             </button>
           </td>
         </ng-container>

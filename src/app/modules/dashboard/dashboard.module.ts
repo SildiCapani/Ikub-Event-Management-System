@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core'
 
 
 
@@ -34,6 +35,7 @@ import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
     MatButtonModule,
     MatNativeDateModule,
     MatIconModule,
+    TranslateModule,
     ToastrModule.forRoot()
   ],
   providers: [DatePipe]

@@ -54,7 +54,7 @@ export class CreateEventComponent {
   onSubmit(): void {
 
       const eventData = {
-      creator: this.user.fullName,
+      creator: this.user.uid,
       date: this.getDateValue(this.eventForm.get('date').value),
       description: this.eventForm.get('description').value,
       lastDate: this.getDateValue(this.eventForm.get('lastDate').value),

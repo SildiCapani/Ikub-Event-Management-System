@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/core/models/user';
-import { Observable } from 'rxjs';
-import { Event, Events } from 'src/app/core/models/event';
+import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
+import { Events } from 'src/app/core/models/event';
 import { EventsService } from 'src/app/core/services/events/events.service';
 import { SearchService } from 'src/app/core/services/search/search.service';
-import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-events',
@@ -20,7 +19,7 @@ export class EventsComponent implements OnInit {
 
   constructor(
     private eventsService: EventsService,
-    private searchService: SearchService
+    private searchService: SearchService,
   ) {}
 
   getSearch(): void {

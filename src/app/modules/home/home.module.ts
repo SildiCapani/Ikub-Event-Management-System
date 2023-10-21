@@ -11,6 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EventsService } from 'src/app/core/services/events/events.service';
 import { HomeResolver } from '../home.resolver';
+import { TranslateModule } from '@ngx-translate/core'
 
 
 
@@ -26,6 +27,7 @@ import { HomeResolver } from '../home.resolver';
     HomeRoutingModule,
     MatRippleModule,
     MatIconModule,
+    TranslateModule,
     CoreModule,
     ReactiveFormsModule
   ],

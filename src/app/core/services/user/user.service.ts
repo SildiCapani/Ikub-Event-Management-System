@@ -69,6 +69,8 @@ export class UserService {
       .createUserWithEmailAndPassword(userInfo.email, password)
       .then((result) => {
         this.setUserData(userInfo, result.user.uid);
+        this.toastrService.success('Organizer successfully registered')
+        this.router.navigateByUrl('/dashboard')
       })
   }
 
@@ -96,9 +98,9 @@ export class UserService {
       email: user.email,
       fullName: user.fullName,
       role: user.role,
-      // age: user.age,
-      // address: user.address,
-      // phoneNumber: user.phoneNumber,
+      // age: user?.age,
+      // address: user?.address,
+      // phoneNumber: user?.phoneNumber,
       emailVerified: user.emailVerified,
     };
     return userRef.set(userData, {
@@ -176,9 +178,9 @@ export class UserService {
   }
 
   private handleFirebaseError(error: any): string {
-    // Implement your Firebase Authentication error handling logic here
+    
     let errorMessage = 'An error occurred during login';
-    // You can check error codes or messages to provide specific error messages
+    
     switch(error.code) {
       case'auth/user-not-found':
       errorMessage = 'User not found'

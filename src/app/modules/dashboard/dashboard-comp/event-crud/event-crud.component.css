@@ -1,4 +1,17 @@
 
+.dates{
+  display: flex;
+}
+
+.dates div{
+  padding-right: 1rem;
+}
+
+.input-group.dates{
+  display: flex;
+  flex-direction: column;
+}
+
 
 div{
     padding-top: 20px;

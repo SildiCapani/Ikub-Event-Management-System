@@ -31,10 +31,10 @@
                 <!-- Card footer -->
                 <div class="card-footer text-muted text-center mt-4">
                   <ng-container *ngIf="calculateDaysLeftFunction(event.data.lastDate) > 0; else noMoreTime">
-                  {{calculateDaysLeftFunction(event.data.lastDate)}} Days left for registration
+                  {{calculateDaysLeftFunction(event.data.lastDate)}} {{ 'timeLeft' | translate }}
                   </ng-container>
                   <ng-template #noMoreTime>
-                    Registration time exprired
+                    {{ 'timeExpired' | translate }}
                   </ng-template>
                 </div>
               </div>
@@ -44,7 +44,7 @@
     
           <div class="mat-flex-container" *ngIf="events.length == 0">
             <div class="text-center">
-              <h2>No Events found</h2>
+              <h2>{{ 'noEventsFound' | translate }}</h2>
             </div>
           </div>
 

@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { ForgotPasswordComponent } from './authentication/forgot-password/forgot-password.component';
+import { TranslateModule } from '@ngx-translate/core'
 
 
 
@@ -34,7 +35,8 @@ import { ForgotPasswordComponent } from './authentication/forgot-password/forgot
     FormsModule,
     MatButtonModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    TranslateModule
   ],
   exports: [
     HeaderComponent,

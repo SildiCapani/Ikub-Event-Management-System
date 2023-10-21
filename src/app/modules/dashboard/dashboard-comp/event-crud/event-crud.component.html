@@ -6,33 +6,34 @@
 
 <div class="container mt-5">
     <div class="center-content">
-        <h2>Edit Event</h2>
+        <h2>{{ 'editEvent' | translate }}</h2>
         <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
         
         <div class="form-group">
             
-              <mat-label>Title</mat-label>
+              <mat-label>{{ 'title' | translate }}</mat-label>
               <input class="form-control"  formControlName="title" placeholder="Event Title" >
          
           </div>
 
           <div class="form-group">
             
-              <mat-label>Description</mat-label>
+              <mat-label>{{ 'desc' | translate }}</mat-label>
               <textarea class="form-control" formControlName="description" placeholder="Event Description" rows="4" ></textarea>
             
           </div>
 
         <div class="form-group">
             
-                <mat-label>Image URL</mat-label>
+                <mat-label>{{ 'imgUrl' | translate }}</mat-label>
                 <input class="form-control" formControlName="image" placeholder="Image URL" >
             
         </div>
   
         <div class="form-group">
             <mat-form-field class="full-width">
-                <mat-label>Date</mat-label>
+                <mat-label>{{ 'date' | translate }}</mat-label>
+                
                 <input matInput [matDatepicker]="picker" placeholder="Event Date" formControlName="date">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -41,14 +42,14 @@
 
         <div class="form-group">
             
-              <mat-label>Price</mat-label>
+              <mat-label>{{ 'price' | translate }}</mat-label>
               <input class="form-control" formControlName="price" placeholder="Event Price" >
             
           </div>
   
           <div class="form-group">
                 <mat-form-field class="full-width">
-                <mat-label>Last Date to Register</mat-label>
+                <mat-label>{{ 'lastDateToRegister' | translate }}</mat-label>
                     <input matInput [matDatepicker]="lastDatePicker" placeholder="Last Date to Register" formControlName="lastDate">
                     <mat-datepicker-toggle matSuffix [for]="lastDatePicker"></mat-datepicker-toggle>
                     <mat-datepicker #lastDatePicker></mat-datepicker>
@@ -57,13 +58,13 @@
   
             <div class="form-group">
                 
-                  <mat-label>Max Attendees</mat-label>
+                  <mat-label>{{ 'maxAtt' | translate }}</mat-label>
                   <input class="form-control" formControlName="maxAttenders" placeholder="Max Attendees">
                 
               </div>
   
               <div class="form-group text-center">
-                <button mat-raised-button color="primary" type="submit" [disabled]="!eventForm.valid">Save</button>
+                <button mat-raised-button color="primary" type="submit" [disabled]="!eventForm.valid">{{ 'save' | translate }}</button>
               </div>
         </form>
     </div>  
