@@ -5,7 +5,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, map, tap } from 'rxjs';
-import { Event, Events } from 'src/app/core/models/Event';
+import { Event, Events } from 'src/app/core/models/event';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,8 @@ export class EventsService {
 
   constructor(private db: AngularFireDatabase, private toastrService: ToastrService, private storage: AngularFireStorage, private router: Router) { }
 
-  getEventsData(): Observable<any[]>{
-    return this.db.list<any>('events').valueChanges()
+  getEventsData(): Observable<Events[]>{
+    return this.db.list<Events>('events').valueChanges()
   }
 
   
@@ -28,16 +28,16 @@ export class EventsService {
 
 
   registerForEvent(id: string,fullName: string): void {
-    const tutRef = this.db.object(`events/${id}/data`);
+    const Event = this.db.object(`events/${id}/data`);
 
     // Fetch the current data from the database
-    const subscription = tutRef.valueChanges().subscribe((event: Event) => {
+    const subscription = Event.valueChanges().subscribe((event: Event) => {
       if (!event.namesOfRegisteredAttenders.includes(fullName)) {
         const updatedRegisteredAttenders = event.registeredAttenders + +1;
-        const updatedNamesOfRegisteredAttenders = [...event.namesOfRegisteredAttenders, fullName];
+        const updatedNamesOfRegisteredAttenders = [event.namesOfRegisteredAttenders, fullName];
     
         // Update the event in the database
-        tutRef.update({
+        Event.update({
           registeredAttenders: updatedRegisteredAttenders,
           namesOfRegisteredAttenders: updatedNamesOfRegisteredAttenders
         }).then(() => {

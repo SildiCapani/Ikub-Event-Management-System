@@ -1,11 +1,13 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Event } from 'src/app/core/models/Event';
+import { Event } from 'src/app/core/models/event';
 import { EventsService } from 'src/app/core/services/events/events.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { User } from 'src/app/core/models/User';
+import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { Location } from '@angular/common';
+import { EMPTY } from 'rxjs';
+import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
 
 
 @Component({
@@ -18,13 +20,15 @@ import { Location } from '@angular/common';
 
 export class EventComponent implements OnInit {
 
-  eventId: string;
-  event: Event;
+  eventId = this.activatedRoute.snapshot.paramMap.get('id')
+  event$ = this.eventId? this.eventService.getEventById(this.eventId) : EMPTY;
   user: User;
+
+  calculateDaysLeftFunction = calculateDaysLeft
 
   constructor(
     private eventService: EventsService, 
-    private route: ActivatedRoute, 
+    private activatedRoute: ActivatedRoute, 
     private modalService: NgbModal, 
     private userService: UserService, 
     private router: Router, 
@@ -43,9 +47,23 @@ export class EventComponent implements OnInit {
     this.location.back();
   }
 
+  calculateDaysLeft(date: string): number {
+    const registrationEndDate  = new Date(date);
+    const today  = new Date();
+
+    const differenceInTime = registrationEndDate.getTime() - today.getTime();
+
+    const daysLeft = Math.ceil(differenceInTime / (1000 * 60 * 60 * 24))
+
+    return daysLeft
+  }
+
   ngOnInit(): void {
-      this.eventId = this.route.snapshot.paramMap.get('id')
-      this.eventService.getEventById(this.eventId).subscribe(event => this.event = event)
+      
+      // this.activatedRoute.data.subscribe((data) => {
+      //   const post = data as Event;
+      //   this.event = post;
+      // });
       this.userService.userObservable.subscribe(user => this.user = user)
   }
 

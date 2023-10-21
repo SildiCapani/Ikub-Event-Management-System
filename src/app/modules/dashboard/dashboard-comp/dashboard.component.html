@@ -1,53 +1,130 @@
-
-
 <div class="container mt-5">
-    <div class="demo-button-container">
-      <button mat-raised-button  class="demo-button" *ngIf="user.role == 'organizer'" routerLink="create-event">
-        Create Event
-      </button>
-      <button
-          mat-raised-button
-          *ngIf="user.role == 'admin'"
-          routerLink="register-organizer"
-          class="demo-button">
-        Register Organizer
-      </button>
-    </div>
+  <div class="demo-button-container">
+    <button
+      mat-raised-button
+      class="demo-button"
+      *ngIf="user.role == 'organizer'"
+      routerLink="create-event"
+    >
+      Create Event
+    </button>
+    <button
+      mat-raised-button
+      *ngIf="user.role == 'admin'"
+      routerLink="register-organizer"
+      class="demo-button"
+    >
+      Register Organizer
+    </button>
+  </div>
 
-    <table mat-table [dataSource]="events" class="mat-elevation-z8 demo-table">
-      
-      <ng-container matColumnDef="title">
-        <th mat-header-cell *matHeaderCellDef>Title</th>
-        <td mat-cell *matCellDef="let element">{{element.title}}</td>
-      </ng-container>
+  <mat-tab-group>
+    <mat-tab label="All Events">
+      <table
+        mat-table
+        [dataSource]="events$ | async"
+        class="mat-elevation-z8 demo-table"
+      >
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="lastDate">
-        <th mat-header-cell *matHeaderCellDef>Last date</th>
-        <td mat-cell *matCellDef="let element">{{element.lastDate}}</td>
-      </ng-container>
+        <ng-container matColumnDef="lastDate">
+          <th mat-header-cell *matHeaderCellDef>Last date</th>
+          <td mat-cell *matCellDef="let element">{{ element.lastDate }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef>Date</th>
-        <td mat-cell *matCellDef="let element">{{element.date}}</td>
-      </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="maxAttenders">
-        <th mat-header-cell *matHeaderCellDef>Max attenders</th>
-        <td mat-cell *matCellDef="let element">{{element.maxAttenders}}</td>
-      </ng-container>
+        <ng-container matColumnDef="maxAttenders">
+          <th mat-header-cell *matHeaderCellDef>Max attenders</th>
+          <td mat-cell *matCellDef="let element">{{ element.maxAttenders }}</td>
+        </ng-container>
 
-      <ng-container matColumnDef="registeredAttenders">
-        <th mat-header-cell *matHeaderCellDef>Registered attenders</th>
-        <td mat-cell *matCellDef="let element">{{element.registeredAttenders}}</td>
-      </ng-container>^
-      
-      <ng-container matColumnDef="modify">
-        <th mat-header-cell *matHeaderCellDef> </th>
-        <td mat-cell *matCellDef="let element"><button mat-raised-button color="primary" routerLink="event-crud/{{element.id}}" [disabled]="!(element.creator == user.fullName)">Modify</button></td>
-      </ng-container>      
+        <ng-container matColumnDef="registeredAttenders">
+          <th mat-header-cell *matHeaderCellDef>Registered attenders</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.registeredAttenders }}
+          </td> </ng-container
+        >^
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
-    
-    </table>
+        <ng-container matColumnDef="modify">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="primary"
+              routerLink="event-crud/{{ element.id }}"
+              [disabled]="
+                !(element.creator == user.fullName) || element.role != organizer
+              "
+            >
+              Modify
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+    </mat-tab>
+
+    <mat-tab label="My Events">
+      <table
+        mat-table
+        [dataSource]="myEvents$ | async"
+        class="mat-elevation-z8 demo-table"
+      >
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef>Title</th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastDate">
+          <th mat-header-cell *matHeaderCellDef>Last date</th>
+          <td mat-cell *matCellDef="let element">{{ element.lastDate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let element">{{ element.date }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="maxAttenders">
+          <th mat-header-cell *matHeaderCellDef>Max attenders</th>
+          <td mat-cell *matCellDef="let element">{{ element.maxAttenders }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="registeredAttenders">
+          <th mat-header-cell *matHeaderCellDef>Registered attenders</th>
+          <td mat-cell *matCellDef="let element">
+            {{ element.registeredAttenders }}
+          </td> </ng-container
+        >^
+
+        <ng-container matColumnDef="modify">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-raised-button
+              color="primary"
+              routerLink="event-crud/{{ element.id }}"
+              [disabled]="
+                !(element.creator == user.fullName) || element.role != organizer
+              "
+            >
+              Modify
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: columns"></tr>
+      </table>
+    </mat-tab>
+  </mat-tab-group>
 </div>

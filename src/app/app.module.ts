@@ -13,6 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -57,6 +58,7 @@ import { DashboardComponent } from './modules/dashboard/dashboard-comp/dashboard
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
     MatRippleModule,
+    MatTabsModule,
     HomeModule,
     
     ToastrModule.forRoot({

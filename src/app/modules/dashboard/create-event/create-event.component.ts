@@ -2,7 +2,7 @@ import { DatePipe, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { User } from 'src/app/core/models/User';
+import { User } from 'src/app/core/models/user';
 import { EventsService } from 'src/app/core/services/events/events.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 

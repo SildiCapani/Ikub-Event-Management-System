@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EventsComponent } from './events/events.component';
 import { EventComponent } from './events/event/event.component';
 import { UserComponent } from './user/user.component';
+import { HomeResolver } from '../home.resolver';
 
 const routes: Routes = [
   { path: '', 
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'details/:id',
-    component: EventComponent
+    component: EventComponent,
+    resolve: { post: HomeResolver }
   },
   {
     path: 'user/profile',

@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { CanLoad, Route, Router, UrlSegment, UrlTree } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { User } from "../models/User";
+import { User } from "../models/user";
 
 
 @Injectable({

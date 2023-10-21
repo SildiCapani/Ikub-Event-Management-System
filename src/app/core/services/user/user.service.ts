@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/core/models/User';
+import { User } from 'src/app/core/models/user';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -64,12 +64,27 @@ export class UserService {
       });
   }
 
+  registerOrganizer(userInfo: User, password: string): Promise<void> {
+    return this.auth
+      .createUserWithEmailAndPassword(userInfo.email, password)
+      .then((result) => {
+        this.setUserData(userInfo, result.user.uid);
+      })
+  }
+
   updateUserData(user: any, uid: string): Promise<void> {
     const userRef: AngularFirestoreDocument<User> = this.firestore.doc(
       `users/${uid}`
     );
 
-    return userRef.update(user)
+    return userRef.update(user).then(() => {
+    this.getUser(uid).subscribe((userInfo) => {
+      this.user = userInfo;
+      this.setUserToLocaleStorage(this.user)
+      this.user$.next(this.user)
+      this.router.navigateByUrl('/')
+    })
+  })
   }
 
   setUserData(user: User, uid: any) {
@@ -81,9 +96,9 @@ export class UserService {
       email: user.email,
       fullName: user.fullName,
       role: user.role,
-      age: user.age,
-      address: user.address,
-      phoneNumber: user.phoneNumber,
+      // age: user.age,
+      // address: user.address,
+      // phoneNumber: user.phoneNumber,
       emailVerified: user.emailVerified,
     };
     return userRef.set(userData, {

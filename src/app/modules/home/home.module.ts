@@ -9,6 +9,8 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { EventsService } from 'src/app/core/services/events/events.service';
+import { HomeResolver } from '../home.resolver';
 
 
 
@@ -26,6 +28,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     CoreModule,
     ReactiveFormsModule
+  ],
+  providers: [
+    EventsService,
+    HomeResolver
   ]
 })
 export class HomeModule { }

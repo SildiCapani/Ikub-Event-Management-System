@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Event } from 'src/app/core/models/Event';
+import { Event } from 'src/app/core/models/event';
 import { EventsService } from 'src/app/core/services/events/events.service';
 
 @Component({
