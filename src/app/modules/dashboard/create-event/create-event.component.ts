@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/core/models/user';
-import { EventsService } from 'src/app/core/services/events/events.service';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { EventsService } from 'src/app/core/services/events.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-create-event',
@@ -35,8 +35,8 @@ export class CreateEventComponent {
     })
   }
 
-  getDateValue(value: string): string {
-    return this.datePipe.transform(value, 'yyyy-MM-dd');
+  getDateValue(value: any): string {
+    return this.datePipe.transform(value, `yyyy-MM-dd`);
   }
 
   onImageSelected(event: any): void {

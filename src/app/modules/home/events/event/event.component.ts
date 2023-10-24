@@ -1,13 +1,15 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/core/models/event';
-import { EventsService } from 'src/app/core/services/events/events.service';
+import { EventsService } from 'src/app/core/services/events.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/core/models/user';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { UserService } from 'src/app/core/services/user.service';
 import { Location } from '@angular/common';
 import { EMPTY } from 'rxjs';
 import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CommentsService } from 'src/app/core/services/comments.service';
 
 
 @Component({
@@ -23,6 +25,9 @@ export class EventComponent implements OnInit {
   eventId = this.activatedRoute.snapshot.paramMap.get('id')
   event$ = this.eventId? this.eventService.getEventById(this.eventId) : EMPTY;
   user: User;
+  commentForm = new FormGroup({
+    comment: new FormControl ('', [Validators.required, Validators.minLength(10)])
+  })
 
   calculateDaysLeftFunction = calculateDaysLeft
 
@@ -31,7 +36,8 @@ export class EventComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private modalService: NgbModal, 
     private userService: UserService, 
-    private router: Router, 
+    private router: Router,
+    private commentService: CommentsService, 
     private location: Location) {}
 
   openBookingForm(bookingDialog: TemplateRef<any>) {
@@ -45,6 +51,16 @@ export class EventComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  addComment(): void {
+    const comment = {
+      userName: this.user.fullName,
+      comment: this.commentForm.get('comment').value
+    }
+
+    this.commentService.comment(comment, this.eventId)
+
   }
 
   calculateDaysLeft(date: string): number {

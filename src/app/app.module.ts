@@ -35,6 +35,7 @@ import { HomeModule } from './modules/home/home.module';
 import { CoreModule } from './core/core.module';
 import { DashboardComponent } from './modules/dashboard/dashboard-comp/dashboard.component';
 import { HttpLoaderFactory } from './core/const/loader-factory';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -53,7 +54,6 @@ import { HttpLoaderFactory } from './core/const/loader-factory';
     MatTableModule,
     NgbModule,
     NgbAlertModule,
-    FormsModule, 
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
@@ -64,6 +64,7 @@ import { HttpLoaderFactory } from './core/const/loader-factory';
     MatRippleModule,
     MatTabsModule,
     HomeModule,
+    SharedModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

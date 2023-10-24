@@ -9,9 +9,18 @@ export interface Event {
   registeredAttenders: number;
   namesOfRegisteredAttenders: string[];
   price: number;
+  location: string;
   title: string;
+  commnets: [
+    Comment
+  ]
 }
 
 export interface Events {
   data: Event
+}
+
+export interface Comment {
+  userName: string
+  comment: string
 }

@@ -9,31 +9,33 @@ import { UsersComponent } from './users/users.component';
 import { UserComponent } from './user/user.component';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EventsService } from 'src/app/core/services/events/events.service';
+import { EventsService } from 'src/app/core/services/events.service';
 import { HomeResolver } from '../home.resolver';
 import { TranslateModule } from '@ngx-translate/core'
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
 @NgModule({
-  declarations: [
-    EventsComponent,
-    EventComponent,
-    UsersComponent,
-    UserComponent
-  ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MatRippleModule,
-    MatIconModule,
-    TranslateModule,
-    CoreModule,
-    ReactiveFormsModule
-  ],
-  providers: [
-    EventsService,
-    HomeResolver
-  ]
+    declarations: [
+        EventsComponent,
+        EventComponent,
+        UsersComponent,
+        UserComponent
+    ],
+    providers: [
+        EventsService,
+        HomeResolver
+    ],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MatRippleModule,
+        MatIconModule,
+        TranslateModule,
+        CoreModule,
+        ReactiveFormsModule,
+        SharedModule
+    ]
 })
 export class HomeModule { }

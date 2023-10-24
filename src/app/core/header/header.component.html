@@ -8,5 +8,24 @@
     <a *ngIf="user" (click)="onLogout()" mat-button>Logout </a>
     <div style="width: 20px;"></div>
     <a *ngIf="user" routerLink="events/user/profile"><strong > {{user.fullName}}</strong></a>
+    <div style="width: 20px;"></div>
+
+    <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+        <button
+            type="button"
+            class="btn btn-outline-light"
+            id="dropdown"
+            ngbDropdownAnchor
+            (focus)="myDrop.open()"
+        >
+        <mat-icon>language</mat-icon>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdown">
+            <button ngbDropdownItem  (click)="changeLanguage('al')">Shqip <img src="../../../assets/flangs/albania.png" alt="Albania Flag"></button>
+            <button ngbDropdownItem  (click)="changeLanguage('en')" >English <img src="../../../assets/flangs/great-britain.png" alt="G-B Flag"></button>
+            <button ngbDropdownItem  (click)="changeLanguage('de')">Deutsch <img src="../../../assets/flangs/germany.svg" alt="German Flag"></button>
+        </div>
+    </div>
+
 </mat-toolbar>
    

@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { Event } from 'src/app/core/models/event';
 import { User } from 'src/app/core/models/user';
-import { EventsService } from 'src/app/core/services/events/events.service';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { EventsService } from 'src/app/core/services/events.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-dashboard',

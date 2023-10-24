@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
 import { Events } from 'src/app/core/models/event';
-import { EventsService } from 'src/app/core/services/events/events.service';
-import { SearchService } from 'src/app/core/services/search/search.service';
+import { EventsService } from 'src/app/core/services/events.service';
+import { SearchService } from 'src/app/core/services/search.service';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

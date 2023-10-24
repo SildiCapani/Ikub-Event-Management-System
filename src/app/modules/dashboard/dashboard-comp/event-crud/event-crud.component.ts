@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Event } from 'src/app/core/models/event';
-import { EventsService } from 'src/app/core/services/events/events.service';
+import { EventsService } from 'src/app/core/services/events.service';
 
 @Component({
   selector: 'app-event-crud',

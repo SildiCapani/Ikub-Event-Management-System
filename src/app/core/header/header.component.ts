@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { UserService } from '../services/user/user.service';
+import { UserService } from '../services/user.service';
 import { User } from 'src/app/core/models/user';
+import { LanguageService } from '../services/language.service';
 
 @Component({
   selector: 'app-header',
@@ -15,12 +16,16 @@ export class HeaderComponent {
   searchValue: string = '';
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private languageService: LanguageService) {
     userService.userObservable.subscribe(user => this.user = user)
   }
 
   onLogout(): void{
     this.userService.onLogout()
+  }
+
+  changeLanguage(language: string) {
+    this.languageService.setLanguage(language);
   }
 
 }
