@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/core/models/user';
+import { EventCrudService } from 'src/app/core/services/event-crud.service';
 import { EventsService } from 'src/app/core/services/events.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -16,13 +17,12 @@ import { UserService } from 'src/app/core/services/user.service';
 export class CreateEventComponent {
 
   eventForm: FormGroup;
-  user: User;
+  user: User = this.userService.user$.getValue()
   maxId: number;
   model: NgbDateStruct;
   selectedImage: File | null = null;
 
-  constructor(private eventsService: EventsService, private userService: UserService, private datePipe: DatePipe, private location: Location) {
-    this.userService.userObservable.subscribe(user => this.user = user);
+  constructor(private eventsService: EventCrudService, private userService: UserService, private datePipe: DatePipe, private location: Location) {
 
     this.eventForm = new FormGroup({
       title: new FormControl('', [Validators.required, Validators.minLength(10)]),

@@ -14,7 +14,6 @@ export class CardComponent {
   @Input() events: Events[]
 
   constructor() {
-    console.log(this.events)
   }
 
   calculateDaysLeftFunction = calculateDaysLeft

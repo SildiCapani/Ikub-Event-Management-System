@@ -69,7 +69,7 @@
                 </div>
 
 
-                <button mat-button class="submit" type="submit" [disabled]="!registerForm.valid">Register</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!registerForm.valid">Register Organizer</button>
 
                 <ng-template #requiredErrorRef let-control>
                     <span class="input-error" *ngIf="(control?.errors?.required) && isSubmitted" style="color: red;" >Schould not be empty</span>

@@ -54,33 +54,6 @@ export class EventsService {
       }
     });
   }
-
-  
-  updateEvent(id: string,data: Event): void {
-    const event = this.db.object(`events/${id}/data`)
-    event.update(data)
-    .then(() => {
-      this.toastrService.success("Event has been updated")
-      this.router.navigateByUrl('/dashboard')
-    })
-  }
-
-  
-  createEvent(data: any, imageFile: File): void {
-    const event = this.db.list(`events`).push({data}).key
-    this.uploadImageAndSaveData(data, imageFile, event);
-    this.db.object(`events/${event}/data`).update({id: event})
-    .then(() => {
-      this.toastrService.success("Event has been created")
-      this.router.navigateByUrl('/dashboard')
-    })
-  }
-
-
-  deleteEvent(id: string): void {
-    this.db.object(`events/${id}`).remove()
-    console.log('works')
-  }
   
   
   private uploadImageAndSaveData(eventData: any, imageFile: File, eventId: string): void {

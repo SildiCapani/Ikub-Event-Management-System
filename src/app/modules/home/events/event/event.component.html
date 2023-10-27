@@ -14,7 +14,7 @@
       <div class="col-md-8">
         <div class="card">
           <img class="card-img-top" src="{{ event.image }}" alt="Event Image" />
-          <!-- src="{{ event.image }}" -->
+     
           <div class="card-body">
             <h2 class="card-title">{{ event.title }}</h2>
             <h5 class="card-title" style="color:rgba(53, 52, 52, 0.664)">{{ 'desc' | translate }}:</h5>
@@ -28,7 +28,7 @@
           <div class="card-body">
             <h3 class="card-title text-center" style="color:rgba(104, 101, 101, 0.993)">{{ 'eventDetails' | translate }}</h3>
 
-            <div class="col-md-5">
+            <div >
               
                   <p><strong i18n> <mat-icon class="mr-1" style="vertical-align: middle; color:rgba(53, 52, 52, 0.664)">event</mat-icon>:</strong> {{ event.date | date }}</p>
                   <p><strong><mat-icon class="mr-1" style="vertical-align: middle; color:rgba(53, 52, 52, 0.664)">location_on</mat-icon>:</strong> {{ event.location }} </p>
@@ -40,7 +40,7 @@
                   
               
             </div>
-            <div class="col-md-6">
+            <div >
               <p><strong style="color:rgba(53, 52, 52, 0.664)">{{ 'maxAtt' | translate }}:</strong> {{ event.maxAttenders }}</p>
               <p>
                 <strong style="color:rgba(53, 52, 52, 0.664)">{{ 'registeredAtt' | translate }}:</strong>
@@ -50,20 +50,14 @@
           </div>
 
           <div class="card-footer">
-            <ng-container
-              *ngIf="calculateDaysLeftFunction(event.lastDate) <= 0; else goOn"
-            >
+            <ng-container *ngIf="calculateDaysLeftFunction(event.lastDate) <= 0; else goOn">
               <button class="btn btn-secondary" disabled>
                 {{ 'timeExpired' | translate }}
               </button>
             </ng-container>
+
             <ng-template #goOn>
-              <ng-container
-                *ngIf="
-                  event.namesOfRegisteredAttenders.includes(user.fullName);
-                  else bookNow
-                "
-              >
+              <ng-container *ngIf="event.namesOfRegisteredAttenders.includes(user?.fullName) else bookNow">
                 <button class="btn btn-warning" disabled>
                   {{ 'alreadyRegistered' | translate }}
                 </button>
@@ -71,12 +65,7 @@
             </ng-template>
 
             <ng-template #bookNow>
-              <ng-container
-                *ngIf="
-                  event.maxAttenders > event.registeredAttenders;
-                  else soldOut
-                "
-              >
+              <ng-container *ngIf="user && event.maxAttenders >= event.registeredAttenders; else noUser">
                 <button
                   class="btn btn-primary"
                   (click)="openBookingForm(bookingDialog)"
@@ -85,64 +74,42 @@
                 </button>
               </ng-container>
             </ng-template>
+
+            <ng-template #noUser>
+              <ng-container *ngIf="event.maxAttenders >= event.registeredAttenders; else soldOut">
+                <button
+                  class="btn btn-primary"
+                  routerLink="/login"
+                >
+                {{ 'pleaseLogin' | translate }}
+                </button>
+              </ng-container>
+            </ng-template> 
+
             <ng-template #soldOut>
-              <button class="btn btn-secondary" disabled>{{ 'soldOut' | translate }}</button>
+              <ng-container >
+                <button class="btn btn-secondary" disabled>{{ 'soldOut' | translate }}</button>
+              </ng-container>
             </ng-template>
-          </div>
-</div>
-          <div class="card mt-4" *ngIf="user.role == 'organizer'">
-          <div class="card-body" *ngIf="event.namesOfRegisteredAttenders.length > 1; else noRegisteredAttenders">
-            <h5 class="card-title">{{ 'registeredAtt' | translate }}</h5>
-            <ng-container *ngIf="event.namesOfRegisteredAttenders.length > 1; else noRegisteredAttenders">
-              <ul>
-                <span *ngFor="let attenderName of event.namesOfRegisteredAttenders">
-                  <li *ngIf="attenderName.length > 1">
-                    {{ attenderName }}
-                  </li>
-                </span>
-              </ul>
-            </ng-container>
-            <ng-template #noRegisteredAttenders>
-              <p>{{ 'noRegistreredAtt' | translate }}</p>
-            </ng-template>
+
+            
+            <ng-template #noUser>
+              <ng-container>
+                <button
+                  class="btn btn-primary"
+                  routerLink="/login"
+                >
+                {{ 'pleaseLogin' | translate }}
+                </button>
+              </ng-container>
+            </ng-template> 
           </div>
         </div>
 
+        <app-user-list [event]="event"></app-user-list>
         
-        
-      
-      <div class="mt-4" *ngIf="calculateDaysLeftFunction(event.date) <= 0">
-        <h5 class="mb-3">{{ 'comments' | translate }}</h5>
-        <div class="card">
-          <div class="card-body">
-            <!-- Display comments here -->
-            <div >
-            <div *ngFor="let comment of event.comments | keyvalue" class="mb-3">
-              <div class="d-flex align-items-center">
-                <div class="mr-4">
-                  <strong>{{ comment.value.userName }}:</strong>
-                </div>
-                <div>{{ comment.value.comment }}</div>
-              </div>
-            </div>
-          </div>
-    
-            <!-- Comment input form -->
-            <form [formGroup]="commentForm" (submit)="addComment()" *ngIf="commentInput">
-            <div class="mb-3" >
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Add a comment..."
-                formControlName="comment"
-              />
-            </div> 
-            <button class="btn btn-primary" type="submit" [disabled]="!commentForm.valid">Comment</button>
-          </form><br/>
-          <button class="btn btn-primary" (click)=" commentInput = !commentInput">{{ !commentInput ? 'Add Comment' : 'Close' }}</button>
-          </div>
-        </div>
-      </div>
+        <app-comments [event]="event"></app-comments>
+
       </div>
     </div>
   </div>

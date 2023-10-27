@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Comment } from '../models/event';
@@ -19,7 +18,7 @@ export class CommentsService {
 
     .then( () => {
       this.toastrService.success('Thank you for you feedback');
-      this.router.navigateByUrl('')
+      
   })
   }
 }

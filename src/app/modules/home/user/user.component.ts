@@ -15,7 +15,7 @@ export class UserComponent implements OnInit {
 
   localUser: User;
 
-  userDetails$ = this.userService.userObservable.pipe(
+  userDetails$ = this.userService.user$.pipe(
     switchMap((localUser) =>
       this.userService.getUser(localUser.uid).pipe(
         tap((user) => {

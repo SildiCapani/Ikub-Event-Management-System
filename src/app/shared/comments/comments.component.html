@@ -1,0 +1,33 @@
+      <!------------ COMMENTS --------------->
+      <div class="mt-4" *ngIf="calculateDaysLeftFunction(event.date) <= 0">
+        <h5 class="mb-3">{{ 'comments' | translate }}</h5>
+        <div class="card">
+          <div class="card-body">
+            <!-- Display comments here -->
+            <div >
+            <div *ngFor="let comment of event.comments | keyvalue" class="mb-3">
+              <div class="d-flex align-items-center">
+                <div class="mr-4">
+                  <strong>{{ comment.value.userName }}:</strong>
+                </div>
+                <div>{{ comment.value.comment }}</div>
+              </div>
+            </div>
+          </div><br/>
+    
+            <!-- Comment input form -->
+            <form [formGroup]="commentForm" class=" d-flex p-1 my-2 my-lg-0" (submit)="addComment()" >
+            <div  >
+              <input
+                type="text"
+                class="form-control mr-sm-2"
+                placeholder="Add a comment..."
+                formControlName="comment"
+              />
+            </div> 
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" [disabled]="!commentForm.valid">Comment</button>
+          </form>
+          
+          </div>
+        </div>
+      </div>

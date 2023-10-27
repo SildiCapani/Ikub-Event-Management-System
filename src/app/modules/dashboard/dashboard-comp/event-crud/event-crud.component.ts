@@ -1,9 +1,10 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Event } from 'src/app/core/models/event';
+import { EventCrudService } from 'src/app/core/services/event-crud.service';
 import { EventsService } from 'src/app/core/services/events.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class EventCrudComponent implements OnInit {
   eventData: Event
   eventId: string;
   eventForm: FormGroup;
-  constructor(private route: ActivatedRoute, private eventsService: EventsService, private toastr: ToastrService, private location: Location) {
+  constructor(private route: ActivatedRoute, private eventsService: EventsService,private eventCrudService: EventCrudService , private toastr: ToastrService, private location: Location) {
     
     this.eventForm = new FormGroup({
       title: new FormControl('', Validators.required),
@@ -36,7 +37,7 @@ export class EventCrudComponent implements OnInit {
 
     if(this.eventForm.valid){
       
-      this.eventsService.updateEvent(this.eventId, this.eventForm.value)
+      this.eventCrudService.updateEvent(this.eventId, this.eventForm.value)
     
     } else {
       this.toastr.error("Invalid Form pleas check your inputs", "Invalid Form")

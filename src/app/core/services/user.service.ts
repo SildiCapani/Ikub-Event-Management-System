@@ -14,11 +14,9 @@ export class UserService {
 
   USER_KEY: string = "User";
   user!: User;
-  private user$ = new BehaviorSubject<User>(this.getUserFromLocaleStorage());
-  public userObservable: Observable<User>;
-
+  user$ = new BehaviorSubject<User>(this.getUserFromLocaleStorage());
   constructor( private router: Router, private db: AngularFireDatabase, private auth: AngularFireAuth, private firestore: AngularFirestore, private toastrService: ToastrService) { 
-    this.userObservable = this.user$.asObservable();
+    
    }
 
    userLogin(email: string, password: string): Promise<void> {
@@ -29,7 +27,6 @@ export class UserService {
         this.user = userInfo;
         this.setUserToLocaleStorage(this.user)
         this.user$.next(this.user)
-        console.log(this.user)
         this.router.navigateByUrl('/')
       })
     })

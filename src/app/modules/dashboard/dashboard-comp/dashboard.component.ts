@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, map } from 'rxjs';
 import { User } from 'src/app/core/models/user';
+import { EventCrudService } from 'src/app/core/services/event-crud.service';
 import { EventsService } from 'src/app/core/services/events.service';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class DashboardComponent {
   // eventsData$: Observable<Event[]> = this.eventsService.getEventsData();
-  user: User;
+  user: User =  this.userService.user$.getValue()
   columns = [
     'title',
     'lastDate',
@@ -38,9 +39,10 @@ export class DashboardComponent {
 
   constructor(
     private eventsService: EventsService,
+    private eventCrudService: EventCrudService,
     private userService: UserService
   ) {
-    this.userService.userObservable.subscribe((user) => (this.user = user));
+    
   }
 
   confirmDelete(eventId: string) {
@@ -51,6 +53,6 @@ export class DashboardComponent {
   }
 
   deleteEvent(id: string): void {
-    this.eventsService.deleteEvent(id)
+    this.eventCrudService.deleteEvent(id)
   }
 }

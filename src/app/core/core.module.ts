@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatRippleModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { SearchComponent } from './search/search.component';
 import { HeaderComponent } from './header/header.component';
@@ -33,6 +32,7 @@ import { TranslateModule } from '@ngx-translate/core'
     ReactiveFormsModule,
     RouterModule,
     FormsModule,
+    NgbModule,
     NgbDropdownModule,
     MatButtonModule,
     MatToolbarModule,

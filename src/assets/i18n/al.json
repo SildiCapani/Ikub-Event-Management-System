@@ -4,7 +4,7 @@
     "noEventsFound": "Nuk u gjetën Events",
     "alreadyRegistered": "Jeni te regjistruar",
     "bookNow": "Rezervo Tani",
-    "soldOut": "E sheshte",
+    "soldOut": "E shitur",
     "bookEvent": "Rezervo Eventin",
     "wantToBookEvent": "Dëshironi të rezervoni për këtë Event?",
     "close": "Mbylle",
@@ -29,5 +29,6 @@
     "save": "Ruaj",
     "location": "Vendndodhja",
     "noRegistreredAtt": "Nuk ka pjesëmarrës të regjistruar.",
-    "comments": "Komentet"
+    "comments": "Komentet",
+    "pleasLogin": "Ju lutemi identifikohuni për t'u regjistruar për këtë Event"
 }

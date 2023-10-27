@@ -30,5 +30,6 @@
     "location": "Location",
     "delete": "Delete",
     "noRegistreredAtt": "No registered attendees yet.",
-    "comments": "Comments"
+    "comments": "Comments",
+    "pleaseLogin": "Please login to register for this event"
 }

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { UserService } from '../services/user.service';
-import { User } from 'src/app/core/models/user';
 import { LanguageService } from '../services/language.service';
 
 @Component({
@@ -12,12 +11,11 @@ import { LanguageService } from '../services/language.service';
 
 export class HeaderComponent {
 
-  user?: User
+  user = this.userService.user$
   searchValue: string = '';
 
 
   constructor(private userService: UserService, private languageService: LanguageService) {
-    userService.userObservable.subscribe(user => this.user = user)
   }
 
   onLogout(): void{

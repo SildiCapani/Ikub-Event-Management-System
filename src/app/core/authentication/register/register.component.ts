@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     const password: string = this.registerForm.get('password')?.value
 
     this.userService.userSignUp(user, password)
-    console.log(this.registerForm)
+    
   }
 
   ngOnInit(): void {

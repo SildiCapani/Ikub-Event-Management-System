@@ -1,0 +1,19 @@
+<div >
+    <div class="card mt-4" *ngIf="user?.role == 'organizer'">
+        <div class="card-body" *ngIf="event.namesOfRegisteredAttenders.length > 1; else noRegisteredAttenders">
+        <h5 class="card-title">{{ 'registeredAtt' | translate }}</h5>
+        <ng-container *ngIf="event.namesOfRegisteredAttenders.length > 1; else noRegisteredAttenders">
+            <ul>
+            <span *ngFor="let attenderName of event.namesOfRegisteredAttenders">
+                <li *ngIf="attenderName.length > 1">
+                {{ attenderName }}
+                </li>
+            </span>
+            </ul>
+        </ng-container>
+        <ng-template #noRegisteredAttenders>
+            <p>{{ 'noRegistreredAtt' | translate }}</p>
+        </ng-template>
+        </div>
+    </div>
+</div>

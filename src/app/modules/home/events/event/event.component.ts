@@ -24,10 +24,8 @@ export class EventComponent implements OnInit {
 
   eventId = this.activatedRoute.snapshot.paramMap.get('id')
   event$ = this.eventId? this.eventService.getEventById(this.eventId) : EMPTY;
-  user: User;
-  commentForm = new FormGroup({
-    comment: new FormControl ('', [Validators.required, Validators.minLength(10)])
-  })
+  user: User = this.userService.user$.getValue()
+
 
   calculateDaysLeftFunction = calculateDaysLeft
 
@@ -36,8 +34,7 @@ export class EventComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private modalService: NgbModal, 
     private userService: UserService, 
-    private router: Router,
-    private commentService: CommentsService, 
+    private router: Router, 
     private location: Location) {}
 
   openBookingForm(bookingDialog: TemplateRef<any>) {
@@ -53,34 +50,8 @@ export class EventComponent implements OnInit {
     this.location.back();
   }
 
-  addComment(): void {
-    const comment = {
-      userName: this.user.fullName,
-      comment: this.commentForm.get('comment').value
-    }
-
-    this.commentService.comment(comment, this.eventId)
-
-  }
-
-  calculateDaysLeft(date: string): number {
-    const registrationEndDate  = new Date(date);
-    const today  = new Date();
-
-    const differenceInTime = registrationEndDate.getTime() - today.getTime();
-
-    const daysLeft = Math.ceil(differenceInTime / (1000 * 60 * 60 * 24))
-
-    return daysLeft
-  }
-
   ngOnInit(): void {
       
-      // this.activatedRoute.data.subscribe((data) => {
-      //   const post = data as Event;
-      //   this.event = post;
-      // });
-      this.userService.userObservable.subscribe(user => this.user = user)
   }
 
 }
