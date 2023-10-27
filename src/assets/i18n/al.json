@@ -26,5 +26,8 @@
     "editEvent": "Redakto Eventin",
     "desc": "Përshkrimi",
     "imgUrl": "URL e Imazhit",
-    "save": "Ruaj"
+    "save": "Ruaj",
+    "location": "Vendndodhja",
+    "noRegistreredAtt": "Nuk ka pjesëmarrës të regjistruar.",
+    "comments": "Komentet"
 }

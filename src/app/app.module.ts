@@ -63,6 +63,7 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     MatRippleModule,
     MatTabsModule,
+    MatIconModule,
     HomeModule,
     SharedModule,
     TranslateModule.forRoot({

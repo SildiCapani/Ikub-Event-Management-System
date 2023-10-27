@@ -26,5 +26,9 @@
     "editEvent": "Edit Event",
     "desc": "Description",
     "imgUrl": "Image URL",
-    "save": "Save"
+    "save": "Save",
+    "location": "Location",
+    "delete": "Delete",
+    "noRegistreredAtt": "No registered attendees yet.",
+    "comments": "Comments"
 }

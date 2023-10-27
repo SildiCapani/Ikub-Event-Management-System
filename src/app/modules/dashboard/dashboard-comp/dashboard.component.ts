@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { Event } from 'src/app/core/models/event';
 import { User } from 'src/app/core/models/user';
 import { EventsService } from 'src/app/core/services/events.service';
 import { UserService } from 'src/app/core/services/user.service';
@@ -20,6 +19,7 @@ export class DashboardComponent {
     'maxAttenders',
     'registeredAttenders',
     'modify',
+    'delete',
   ];
 
   myEvents$ = this.eventsService
@@ -28,7 +28,7 @@ export class DashboardComponent {
       map((data: any) =>
         data
           .map((item: any) => item.data)
-          .filter((item) => item.creator == this.user.fullName)
+          .filter((item) => item.creator == this.user.uid)
       )
     );
 
@@ -41,5 +41,16 @@ export class DashboardComponent {
     private userService: UserService
   ) {
     this.userService.userObservable.subscribe((user) => (this.user = user));
+  }
+
+  confirmDelete(eventId: string) {
+    if (confirm('Are you sure you want to delete this event?')) {
+      
+      this.deleteEvent(eventId);
+    }
+  }
+
+  deleteEvent(id: string): void {
+    this.eventsService.deleteEvent(id)
   }
 }

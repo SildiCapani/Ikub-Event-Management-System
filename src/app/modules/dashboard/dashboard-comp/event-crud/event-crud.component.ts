@@ -26,6 +26,7 @@ export class EventCrudComponent implements OnInit {
       image: new FormControl('', Validators.required),
       date: new FormControl(new Date(), [Validators.required]),
       price: new FormControl(0, [Validators.required, Validators.min(1)]),
+      location: new FormControl('', Validators.required),
       lastDate: new FormControl(new Date(), Validators.required),
       maxAttenders: new FormControl(0, [Validators.required, Validators.min(50)]),
     })
@@ -55,6 +56,7 @@ export class EventCrudComponent implements OnInit {
         price: this.eventData.price,
         image: this.eventData.image,
         date: this.eventData.date,
+        location: this.eventData.location,
         lastDate: this.eventData.lastDate,
         maxAttenders: this.eventData.maxAttenders
       });

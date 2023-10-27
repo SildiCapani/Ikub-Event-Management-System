@@ -26,5 +26,8 @@
     "editEvent": "Event bearbeiten",
     "desc": "Beschreibung",
     "imgUrl": "Bild URL",
-    "save": "Speichern"
+    "save": "Speichern",
+    "location": "Standort",
+    "noRegistreredAtt": "Noch keine angemeldeten Teilnehmer.",
+    "comments": "Kommentare"
 }

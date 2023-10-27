@@ -1,17 +1,13 @@
-<div class="centered-container">
+<div class="centered-container ">
   <app-search></app-search>
 </div>
 
 <div class="row">
 
        
-   
-
-          <app-card [events]="events"></app-card> 
-            <!-- Card Wider -->
-            
-            <!-- Card Wider -->
- 
+   <h2 class="text-center">Events</h2>
+      
+    <app-card [events]="events"></app-card> 
     
           <div class="mat-flex-container" *ngIf="events.length == 0">
             <div class="text-center">

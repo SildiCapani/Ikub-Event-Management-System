@@ -30,6 +30,7 @@ export class CreateEventComponent {
       image: new FormControl('',),
       date: new FormControl(new Date(), [Validators.required]),
       price: new FormControl(0, [Validators.required, Validators.min(1)]),
+      location: new FormControl('', Validators.required),
       lastDate: new FormControl(new Date(), Validators.required),
       maxAttenders: new FormControl(0, [Validators.required, Validators.min(50)]),
     })
@@ -59,6 +60,7 @@ export class CreateEventComponent {
       description: this.eventForm.get('description').value,
       lastDate: this.getDateValue(this.eventForm.get('lastDate').value),
       maxAttenders: this.eventForm.get('maxAttenders').value,
+      location: this.eventForm.get('location').value,
       registeredAttenders: 0,
       namesOfRegisteredAttenders: { 0: ""},
       price: this.eventForm.get('price').value,

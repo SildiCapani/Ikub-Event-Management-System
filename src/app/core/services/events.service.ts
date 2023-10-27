@@ -76,6 +76,11 @@ export class EventsService {
     })
   }
 
+
+  deleteEvent(id: string): void {
+    this.db.object(`events/${id}`).remove()
+    console.log('works')
+  }
   
   
   private uploadImageAndSaveData(eventData: any, imageFile: File, eventId: string): void {
