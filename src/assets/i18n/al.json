@@ -30,5 +30,10 @@
     "location": "Vendndodhja",
     "noRegistreredAtt": "Nuk ka pjesëmarrës të regjistruar.",
     "comments": "Komentet",
-    "pleasLogin": "Ju lutemi identifikohuni për t'u regjistruar për këtë Event"
+    "pleasLogin": "Ju lutemi identifikohuni për t'u regjistruar për këtë Event",
+    "userProfile": "Profili juaj",
+    "fullName": "Emri i plotë",
+    "phoneNumber": "Numri i telefonit",
+    "age": "Mosha",
+    "address": "Adresë"
 }

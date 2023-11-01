@@ -50,60 +50,26 @@
           </div>
 
           <div class="card-footer">
-            <ng-container *ngIf="calculateDaysLeftFunction(event.lastDate) <= 0; else goOn">
-              <button class="btn btn-secondary" disabled>
+            <div [ngSwitch]="isRegistrationAllowed(event)">
+
+              <button class="btn btn-secondary" *ngSwitchCase="'timeExpired'" disabled>
                 {{ 'timeExpired' | translate }}
               </button>
-            </ng-container>
-
-            <ng-template #goOn>
-              <ng-container *ngIf="event.namesOfRegisteredAttenders.includes(user?.fullName) else bookNow">
-                <button class="btn btn-warning" disabled>
-                  {{ 'alreadyRegistered' | translate }}
-                </button>
-              </ng-container>
-            </ng-template>
-
-            <ng-template #bookNow>
-              <ng-container *ngIf="user && event.maxAttenders >= event.registeredAttenders; else noUser">
-                <button
-                  class="btn btn-primary"
-                  (click)="openBookingForm(bookingDialog)"
-                >
+              <button class="btn btn-warning" *ngSwitchCase="'alreadyRegistered'" disabled>
+                {{ 'alreadyRegistered' | translate }}
+              </button>
+              <button class="btn btn-primary" *ngSwitchCase="'pleaseLogin'" routerLink="/login">
+                {{ 'pleaseLogin' | translate }}
+              </button>
+              <button class="btn btn-primary" *ngSwitchCase="'bookNow'" (click)="openBookingForm(bookingDialog)">
                 {{ 'bookNow' | translate }}
-                </button>
-              </ng-container>
-            </ng-template>
-
-            <ng-template #noUser>
-              <ng-container *ngIf="event.maxAttenders >= event.registeredAttenders; else soldOut">
-                <button
-                  class="btn btn-primary"
-                  routerLink="/login"
-                >
-                {{ 'pleaseLogin' | translate }}
-                </button>
-              </ng-container>
-            </ng-template> 
-
-            <ng-template #soldOut>
-              <ng-container >
-                <button class="btn btn-secondary" disabled>{{ 'soldOut' | translate }}</button>
-              </ng-container>
-            </ng-template>
-
-            
-            <ng-template #noUser>
-              <ng-container>
-                <button
-                  class="btn btn-primary"
-                  routerLink="/login"
-                >
-                {{ 'pleaseLogin' | translate }}
-                </button>
-              </ng-container>
-            </ng-template> 
+              </button>
+              <button class="btn btn-secondary" *ngSwoitchCase="'soldOut'" disabled>
+                {{ 'soldOut' | translate }}
+              </button>
+            </div>
           </div>
+          
         </div>
 
         <app-user-list [event]="event"></app-user-list>

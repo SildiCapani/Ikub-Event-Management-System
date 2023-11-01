@@ -11,9 +11,9 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-  @ViewChild('editMode') editMode: ElementRef;
 
   localUser: User;
+  public editMode: boolean = false;
 
   userDetails$ = this.userService.user$.pipe(
     switchMap((localUser) =>
@@ -39,8 +39,7 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService, private location: Location) {}
 
   toggleEditSection() {
-    this.editMode.nativeElement.style.display =
-      this.editMode.nativeElement.style.display === 'none' ? 'block' : 'none';
+    this.editMode = !this.editMode
   }
 
   saveChanges() {

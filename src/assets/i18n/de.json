@@ -30,5 +30,10 @@
     "location": "Standort",
     "noRegistreredAtt": "Noch keine angemeldeten Teilnehmer.",
     "comments": "Kommentare",
-    "pleaseLogin": "Bitte melden Sie sich an, um sich für diese Veranstaltung anzumelden"
+    "pleaseLogin": "Bitte melden Sie sich an, um sich für diese Veranstaltung anzumelden",
+    "userProfile": "Dein Profil",
+    "fullName": "Vollständiger Name",
+    "phoneNumber": "Telefonnummer",
+    "age": "Alter",
+    "address": "Adresse"
 }

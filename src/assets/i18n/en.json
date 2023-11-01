@@ -31,5 +31,10 @@
     "delete": "Delete",
     "noRegistreredAtt": "No registered attendees yet.",
     "comments": "Comments",
-    "pleaseLogin": "Please login to register for this event"
+    "pleaseLogin": "Please login to register for this event",
+    "userProfile": "Your Profile",
+    "fullName": "Full Name",
+    "phoneNumber": "Phone Number",
+    "age": "Age",
+    "address": "Address"
 }

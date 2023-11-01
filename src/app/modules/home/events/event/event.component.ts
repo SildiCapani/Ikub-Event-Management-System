@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Event } from 'src/app/core/models/event';
 import { EventsService } from 'src/app/core/services/events.service';
@@ -8,8 +8,6 @@ import { UserService } from 'src/app/core/services/user.service';
 import { Location } from '@angular/common';
 import { EMPTY } from 'rxjs';
 import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CommentsService } from 'src/app/core/services/comments.service';
 
 
 @Component({
@@ -48,6 +46,21 @@ export class EventComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  isRegistrationAllowed(event: Event): string {
+    const daysLeft = this.calculateDaysLeftFunction(event.lastDate);
+    if (daysLeft <= 0) {
+      return 'timeExpired';
+    } else if (event.namesOfRegisteredAttenders.includes(this.user?.fullName)) {
+      return 'alreadyRegistered';
+    } else if (!this.user) {
+      return 'pleaseLogin';
+    } else if (event.maxAttenders >= event.registeredAttenders) {
+      return 'bookNow';
+    } else {
+      return 'soldOut';
+    }
   }
 
   ngOnInit(): void {
