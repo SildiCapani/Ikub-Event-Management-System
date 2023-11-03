@@ -11,6 +11,7 @@ export interface Event {
   price: number;
   location: string;
   title: string;
+  waiting: string[]
   commnets: [
     Comment
   ]

@@ -13,7 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core'
+import { TranslateModule } from '@ngx-translate/core';
+import { BookingComponent } from './booking/booking.component'
 
 
 
@@ -23,6 +24,7 @@ import { TranslateModule } from '@ngx-translate/core'
     EventCrudComponent,
     CreateEventComponent,
     RegisterOrganizerComponent,
+    BookingComponent,
   ],
   imports: [
     CommonModule,

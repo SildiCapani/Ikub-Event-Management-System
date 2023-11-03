@@ -55,8 +55,11 @@
               <button class="btn btn-secondary" *ngSwitchCase="'timeExpired'" disabled>
                 {{ 'timeExpired' | translate }}
               </button>
-              <button class="btn btn-warning" *ngSwitchCase="'alreadyRegistered'" disabled>
+              <button class="btn" style="background-color: rgb(46, 218, 46);" *ngSwitchCase="'alreadyRegistered'" disabled>
                 {{ 'alreadyRegistered' | translate }}
+              </button>
+              <button class="btn btn-warning" *ngSwitchCase="'waiting'" disabled>
+                Waiting for check
               </button>
               <button class="btn btn-primary" *ngSwitchCase="'pleaseLogin'" routerLink="/login">
                 {{ 'pleaseLogin' | translate }}
@@ -64,7 +67,7 @@
               <button class="btn btn-primary" *ngSwitchCase="'bookNow'" (click)="openBookingForm(bookingDialog)">
                 {{ 'bookNow' | translate }}
               </button>
-              <button class="btn btn-secondary" *ngSwoitchCase="'soldOut'" disabled>
+              <button class="btn btn-secondary" *ngSwitchCase="'soldOut'" disabled>
                 {{ 'soldOut' | translate }}
               </button>
             </div>

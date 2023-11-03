@@ -15,7 +15,7 @@ export class UserService {
   USER_KEY: string = "User";
   user!: User;
   user$ = new BehaviorSubject<User>(this.getUserFromLocaleStorage());
-  constructor( private router: Router, private db: AngularFireDatabase, private auth: AngularFireAuth, private firestore: AngularFirestore, private toastrService: ToastrService) { 
+  constructor( private router: Router, private auth: AngularFireAuth, private firestore: AngularFirestore, private toastrService: ToastrService) { 
     
    }
 
@@ -144,9 +144,9 @@ export class UserService {
     // }
 
 
-    ForgotPassword(passwordResetEmail: string) {
+    ForgotPassword(email: string) {
       return this.auth
-        .sendPasswordResetEmail(passwordResetEmail)
+        .sendPasswordResetEmail(email)
         .then(() => {
           window.alert('Password reset email sent, check your inbox.');
         })
@@ -156,7 +156,7 @@ export class UserService {
     }
 
 
-  onLogout(): Promise<void> {
+  async onLogout(): Promise<void> {
     return this.auth.signOut()
     .then(() => {
       localStorage.removeItem(this.USER_KEY);

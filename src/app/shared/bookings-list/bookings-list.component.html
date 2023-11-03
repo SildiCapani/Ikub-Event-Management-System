@@ -1,0 +1,39 @@
+<table  mat-table [dataSource]="bookings$ | async" class="mat-elevation-z8 demo-table">
+      
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="age">
+        <th mat-header-cell *matHeaderCellDef>{{ 'age' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{ element.age }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef>{{ 'phoneNumber' | translate}}</th>
+        <td mat-cell *matCellDef="let element">{{ element.phoneNumber }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="eventId">
+        <th mat-header-cell *matHeaderCellDef>Event</th>
+        <td mat-cell *matCellDef="let element">
+            <a mat-raised-button style="text-decoration: none;" routerLink="/events/details/{{ element.eventId }}" target="_blank" >Event <mat-icon>label_important</mat-icon></a>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="verify">
+        <th mat-header-cell *matHeaderCellDef>Verify</th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-raised-button color="primary" style="text-decoration: none;" routerLink="verify/{{ element.id }}" > <mat-icon>done_all</mat-icon> Verify</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columns"></tr>
+      <tr mat-row *matRowDef="let row; columns: columns"></tr> 
+</table> 

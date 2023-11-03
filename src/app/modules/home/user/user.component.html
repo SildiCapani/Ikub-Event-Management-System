@@ -18,8 +18,8 @@
               <p><strong>{{ 'age' | translate }}:</strong> {{userDetails.age}}</p>
               <p><strong>{{ 'address' | translate }}:</strong> {{userDetails.address}}</p>
             </div>
-            <ng-template #editMode>
-                <form [formGroup]="userFrom" (ngSubmit)="saveChanges();" >
+            <div style="display: none;" #editMode>
+                <form [formGroup]="userFrom" (ngSubmit)="saveChanges()" >
               <div class="form-group">
                 <label for="fullName">{{'fullName' | translate}}</label>
                 <input type="text" class="form-control" formControlName="name">
@@ -38,8 +38,8 @@
               </div>
               <button class="btn btn-primary" type="submit">Save Changes</button>
                 </form>
-              </ng-template>
-            <button class="btn btn-primary edit-button" (click)="toggleEditMode()" *ngIf="!editMode" >Edit</button>
+              </div>
+            <button class="btn btn-primary edit-button" (click)="toggleEditSection()" >Edit</button>
           </div>
         </div>
       </div>

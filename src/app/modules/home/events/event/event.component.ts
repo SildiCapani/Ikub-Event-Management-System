@@ -8,6 +8,7 @@ import { UserService } from 'src/app/core/services/user.service';
 import { Location } from '@angular/common';
 import { EMPTY } from 'rxjs';
 import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
+import { BookingService } from 'src/app/core/services/booking.service';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class EventComponent implements OnInit {
     private activatedRoute: ActivatedRoute, 
     private modalService: NgbModal, 
     private userService: UserService, 
-    private router: Router, 
+    private booking: BookingService, 
     private location: Location) {}
 
   openBookingForm(bookingDialog: TemplateRef<any>) {
@@ -40,8 +41,15 @@ export class EventComponent implements OnInit {
   }
 
   bookEvent(): void {
-    this.eventService.registerForEvent(this.eventId,this.user.fullName)
-    this.router.navigateByUrl('/')
+    // this.eventService.registerForEvent(this.eventId,this.user.fullName)
+    const bookingInfo = {
+      name: this.user.fullName,
+      email: this.user.email,
+      phoneNumber: this.user.phoneNumber,
+      age: this.user.age,
+      id: this.user.uid
+    }
+    this.booking.bookEventRequest(bookingInfo, this.eventId)
   }
 
   goBack(): void {
@@ -52,12 +60,16 @@ export class EventComponent implements OnInit {
     const daysLeft = this.calculateDaysLeftFunction(event.lastDate);
     if (daysLeft <= 0) {
       return 'timeExpired';
-    } else if (event.namesOfRegisteredAttenders.includes(this.user?.fullName)) {
+    } else if (event.namesOfRegisteredAttenders?.includes(this.user?.fullName)) {
       return 'alreadyRegistered';
+    } else if (event.waiting?.includes(this.user?.fullName)) {
+      return 'waiting'
     } else if (!this.user) {
       return 'pleaseLogin';
-    } else if (event.maxAttenders >= event.registeredAttenders) {
+    } else if (event.maxAttenders > event.registeredAttenders) {
       return 'bookNow';
+    } else if (event.maxAttenders <= event.registeredAttenders) {
+      return 'soldOut'
     } else {
       return 'soldOut';
     }

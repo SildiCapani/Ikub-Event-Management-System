@@ -7,6 +7,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UserListComponent } from './user-list/user-list.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BookingsListComponent } from './bookings-list/bookings-list.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -14,19 +17,23 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     CardComponent,
     UserListComponent,
-    CommentsComponent
+    CommentsComponent,
+    BookingsListComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatIconModule,
     ReactiveFormsModule,
-    TranslateModule
+    TranslateModule,
+    MatButtonModule,
+    MatTableModule
   ],
   exports: [
     CardComponent,
     UserListComponent,
-    CommentsComponent
+    CommentsComponent,
+    BookingsListComponent
   ]
 })
 export class SharedModule { }
