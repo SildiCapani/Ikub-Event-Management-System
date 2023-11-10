@@ -2,6 +2,7 @@ a{
     font-size: 1.5rem;
     text-decoration: none;
     color: white;
+    font-weight: 500;
 }
 
 .lng-btn:hover{
@@ -16,11 +17,17 @@ a{
     background-color: rgb(65, 65, 243);
 }
 
-nav a:active {
+img {
+    width: 15px;
+}
+
+.nav-link.active {
     text-decoration: underline;
+    color: white;
+    text-decoration-color: red;
   }
   
-nav a:active {
+/* nav a:active {
     background-color: red !important;
   }
-  
+   */
