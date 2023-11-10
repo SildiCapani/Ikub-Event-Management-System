@@ -22,12 +22,9 @@ img {
 }
 
 .nav-link.active {
-    text-decoration: underline;
+    
     color: white;
+    border-bottom: 4px solid red;
     text-decoration-color: red;
   }
   
-/* nav a:active {
-    background-color: red !important;
-  }
-   */

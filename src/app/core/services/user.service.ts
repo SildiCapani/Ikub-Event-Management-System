@@ -160,7 +160,7 @@ export class UserService {
     return this.auth.signOut()
     .then(() => {
       localStorage.removeItem(this.USER_KEY);
-      window.location.reload()
+      this.router.navigateByUrl('/login')
     })
   }
 

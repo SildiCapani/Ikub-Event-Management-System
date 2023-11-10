@@ -5,6 +5,7 @@ import { RegisterComponent } from './core/authentication/register/register.compo
 import { RoleGuard } from './core/guards/role.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ForgotPasswordComponent } from './core/authentication/forgot-password/forgot-password.component';
+import { UserComponent } from './modules/home/user/user.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'user/profile',
+    component: UserComponent
   },
   {
     path: 'forgot-password',

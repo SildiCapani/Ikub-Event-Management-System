@@ -14,10 +14,6 @@ const routes: Routes = [
     component: EventComponent,
     resolve: { post: HomeResolver }
   },
-  {
-    path: 'user/profile',
-    component: UserComponent
-  }
 ];
 
 @NgModule({
