@@ -6,8 +6,6 @@ import { CreateEventComponent } from './create-event/create-event.component';
 import { RegisterOrganizerComponent } from './register-organizer/register-organizer.component';
 import { OrganizerGuard } from 'src/app/core/guards/organizer.guard';
 import { AdminGuard } from 'src/app/core/guards/admin.guard';
-import { BookingComponent } from './booking/booking.component';
-
 
 const routes: Routes = [
   { 
@@ -18,11 +16,6 @@ const routes: Routes = [
     path: 'event-crud/:id',
     canActivate: [OrganizerGuard],
     component: EventCrudComponent
-  },
-  {
-    path: 'verify/:id',
-    canActivate: [OrganizerGuard],
-    component: BookingComponent
   },
   {
     path: 'create-event',

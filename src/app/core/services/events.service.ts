@@ -3,7 +3,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { Event, Events } from 'src/app/core/models/event';
 
 @Injectable({
@@ -26,19 +26,21 @@ export class EventsService {
   }
 
 
-  registerForEvent(id: string,fullName: string): void {
+  registerForEvent(id: string, uid: string): void {
     const Event = this.db.object(`events/${id}/data`);
 
     // Fetch the current data from the database
     const subscription = Event.valueChanges().subscribe((event: Event) => {
-      if (!event.namesOfRegisteredAttenders.includes(fullName)) {
+      if (!event.namesOfRegisteredAttenders.includes(uid)) {
         const updatedRegisteredAttenders = event.registeredAttenders + +1;
-        const updatedNamesOfRegisteredAttenders = [event.namesOfRegisteredAttenders, fullName];
+        // const updatedNamesOfRegisteredAttenders = [event.namesOfRegisteredAttenders, uid];
     
+        event.namesOfRegisteredAttenders.push(uid);
+
         // Update the event in the database
         Event.update({
           registeredAttenders: updatedRegisteredAttenders,
-          namesOfRegisteredAttenders: updatedNamesOfRegisteredAttenders
+          namesOfRegisteredAttenders: event.namesOfRegisteredAttenders
         }).then(() => {
           this.toastrService.success('Registration succeed')
         }).catch((error) => {
@@ -48,7 +50,7 @@ export class EventsService {
         subscription.unsubscribe();
         
       } else {
-        this.toastrService.error(`you are already registered for the event ${fullName}!`, "Event booking faild")
+        this.toastrService.error(`you are already registered for this event!`, "Event booking faild")
         subscription.unsubscribe();
       }
     });

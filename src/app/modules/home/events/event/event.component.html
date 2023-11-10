@@ -55,7 +55,7 @@
               <button class="btn btn-secondary" *ngSwitchCase="'timeExpired'" disabled>
                 {{ 'timeExpired' | translate }}
               </button>
-              <button class="btn" style="background-color: rgb(46, 218, 46);" *ngSwitchCase="'alreadyRegistered'" disabled>
+              <button class="btn btn-success" *ngSwitchCase="'alreadyRegistered'" disabled>
                 {{ 'alreadyRegistered' | translate }}
               </button>
               <button class="btn btn-warning" *ngSwitchCase="'waiting'" disabled>
@@ -75,7 +75,7 @@
           
         </div>
 
-        <app-user-list [event]="event"></app-user-list>
+        <!-- <app-user-list [event]="event"></app-user-list> -->
         
         <app-comments [event]="event"></app-comments>
 

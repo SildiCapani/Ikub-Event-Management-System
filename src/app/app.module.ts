@@ -61,7 +61,6 @@ import { SharedModule } from './shared/shared.module';
     AngularFireStorageModule,
     AngularFireDatabaseModule,
     BrowserAnimationsModule,
-    MatRippleModule,
     MatTabsModule,
     MatIconModule,
     HomeModule,

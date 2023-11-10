@@ -40,14 +40,14 @@ export class EventComponent implements OnInit {
     this.modalService.open(bookingDialog);
   }
 
-  bookEvent(): void {
-    // this.eventService.registerForEvent(this.eventId,this.user.fullName)
+  bookEvent(waitingList: Array<string>): void {
+    // this.eventService.registerForEvent(this.eventId,this.user.uid)
     const bookingInfo = {
       name: this.user.fullName,
       email: this.user.email,
       phoneNumber: this.user.phoneNumber,
       age: this.user.age,
-      id: this.user.uid
+      uid: this.user.uid
     }
     this.booking.bookEventRequest(bookingInfo, this.eventId)
   }
@@ -60,9 +60,9 @@ export class EventComponent implements OnInit {
     const daysLeft = this.calculateDaysLeftFunction(event.lastDate);
     if (daysLeft <= 0) {
       return 'timeExpired';
-    } else if (event.namesOfRegisteredAttenders?.includes(this.user?.fullName)) {
+    } else if (event.namesOfRegisteredAttenders?.includes(this.user?.uid)) {
       return 'alreadyRegistered';
-    } else if (event.waiting?.includes(this.user?.fullName)) {
+    } else if (event.waiting?.includes(this.user?.uid)) {
       return 'waiting'
     } else if (!this.user) {
       return 'pleaseLogin';

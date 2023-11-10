@@ -14,7 +14,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { BookingComponent } from './booking/booking.component'
 
 
 
@@ -24,7 +23,6 @@ import { BookingComponent } from './booking/booking.component'
     EventCrudComponent,
     CreateEventComponent,
     RegisterOrganizerComponent,
-    BookingComponent,
   ],
   imports: [
     CommonModule,
@@ -40,6 +38,7 @@ import { BookingComponent } from './booking/booking.component'
     TranslateModule,
     ToastrModule.forRoot()
   ],
-  providers: [DatePipe]
+  providers: [DatePipe],
+  exports: []
 })
 export class DashboardModule { }

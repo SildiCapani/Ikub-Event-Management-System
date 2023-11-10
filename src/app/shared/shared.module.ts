@@ -10,6 +10,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BookingsListComponent } from './bookings-list/bookings-list.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { BookingComponent } from './booking/booking.component';
 
 
 
@@ -18,7 +20,8 @@ import { MatButtonModule } from '@angular/material/button';
     CardComponent,
     UserListComponent,
     CommentsComponent,
-    BookingsListComponent
+    BookingsListComponent,
+    BookingComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     TranslateModule,
     MatButtonModule,
-    MatTableModule
+    NgbModalModule, 
+    MatTableModule,
   ],
   exports: [
     CardComponent,

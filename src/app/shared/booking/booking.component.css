@@ -1,0 +1,10 @@
+.back-button {
+    position: absolute;
+    top: 1;
+    left: 1;
+  }
+  
+  .scrollable-container {
+    position: relative;
+    padding: 40px; /* Add padding to create space for the button */
+  }

@@ -1,40 +1,26 @@
-.mat-button{
-    color: white;
- }
-
-.spacer{
-   flex: 1 1 auto;
-}
-
-.space{
-    width: 30px;
-}
-
-img {
-    width: 15px;
-}
-
 a{
     font-size: 1.5rem;
     text-decoration: none;
     color: white;
 }
 
-.logo{
-  color: white;
-}
-
-.mat-toolbar{
-    padding: 0 3rem 0 3rem;
-}
-
-button{
-    background: transparent;
-    outline: none;
-    border-style: none;
-    color: white;
+.lng-btn:hover{
+    background-color: rgb(182, 185, 187);
 }
 
 .dropdown-item {
     color: black; 
 }
+
+.navbar{
+    background-color: rgb(65, 65, 243);
+}
+
+nav a:active {
+    text-decoration: underline;
+  }
+  
+nav a:active {
+    background-color: red !important;
+  }
+  

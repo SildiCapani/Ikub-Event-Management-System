@@ -30,10 +30,38 @@
       <ng-container matColumnDef="verify">
         <th mat-header-cell *matHeaderCellDef>Verify</th>
         <td mat-cell *matCellDef="let element">
-            <button mat-raised-button color="primary" style="text-decoration: none;" routerLink="verify/{{ element.id }}" > <mat-icon>done_all</mat-icon> Verify</button>
+            <button mat-raised-button color="primary" style="text-decoration: none;" (click)="openBookingForm(bookingDialog, element)" > <mat-icon>done_all</mat-icon> Verify</button>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="columns"></tr>
       <tr mat-row *matRowDef="let row; columns: columns"></tr> 
-</table> 
+</table>
+
+<ng-template #bookingDialog let-c="close" let-d="dismiss">
+  <mat-dialog-container style="z-index: 1070">
+    <div class="modal-header">
+      <h4 matDialogTitle>Booking request</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="d('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <app-booking [item]="item" ></app-booking>
+
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-secondary"
+        (click)="d('Close click')"
+      >
+      {{ 'close' | translate }}
+      </button>
+    </div>
+  </mat-dialog-container>
+</ng-template>

@@ -1,4 +1,4 @@
-<mat-toolbar color="primary" class="mat-toolbar">
+<!-- <mat-toolbar color="primary" class="mat-toolbar">
   <a routerLink="/" class="logo">Event Management System</a>
   <div class="spacer"></div>
 
@@ -23,18 +23,65 @@
       <mat-icon>language</mat-icon>
     </button>
     <div ngbDropdownMenu aria-labelledby="dropdown">
-      <button ngbDropdownItem (click)="changeLanguage('al')">
+      <button class="lng-btn" ngbDropdownItem (click)="changeLanguage('al')">
         Shqip
         <img src="../../../assets/flangs/albania.png" alt="Albania Flag" />
       </button>
-      <button ngbDropdownItem (click)="changeLanguage('en')">
+      <button class="lng-btn" ngbDropdownItem (click)="changeLanguage('en')">
         English
         <img src="../../../assets/flangs/great-britain.png" alt="G-B Flag" />
       </button>
-      <button ngbDropdownItem (click)="changeLanguage('de')">
+      <button class="lng-btn" ngbDropdownItem (click)="changeLanguage('de')">
         Deutsch
         <img src="../../../assets/flangs/germany.svg" alt="German Flag" />
       </button>
     </div>
   </div>
-</mat-toolbar>
+</mat-toolbar> -->
+<nav class="navbar navbar-expand-lg navbar-light custom-bg-color">
+  <div class="container">
+    <div class="collapse navbar-collapse mx-auto d-flex justify-content-center" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login" *ngIf="!(user | async)" >Login</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="user | async" (click)="onLogout()">Logout </a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" *ngIf="user | async" routerLink="events/user/profile"
+          >Profile</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="dashboard">Dashboard</a>
+        </li>
+        <li ngbDropdown class="nav-item dropdown">
+          <a type="button" class="nav-link dropdown-toggle" id="dropdownBasic1" ngbDropdownToggle>
+            <i class="bi bi-translate"></i>
+          </a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button class="lng-btn" ngbDropdownItem (click)="changeLanguage('al')">
+              Shqip
+              <img src="../../../assets/flangs/albania.png" alt="Albania Flag" />
+            </button>
+            <button class="lng-btn" ngbDropdownItem (click)="changeLanguage('en')">
+              English
+              <img src="../../../assets/flangs/great-britain.png" alt="G-B Flag" />
+            </button>
+            <button class="lng-btn" ngbDropdownItem (click)="changeLanguage('de')">
+              Deutsch
+              <img src="../../../assets/flangs/germany.svg" alt="German Flag" />
+            </button>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

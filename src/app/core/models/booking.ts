@@ -4,5 +4,6 @@ export interface Booking {
     phoneNumber: string,
     age: number,
     id: string,
-    eventId: string
+    eventId: string,
+    uid: string
 }
