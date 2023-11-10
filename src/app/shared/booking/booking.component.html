@@ -3,12 +3,12 @@
     <div>
       <div class="card">
         <div class="card-body border">
-          <h5 class="card-title">{{ item.name }}</h5>
+          <h5 class="card-title"> <span style="font-size: 1rem;font-weight:700;"> Name: </span> {{ item.name }}</h5>
           <p class="card-text"><strong>Email:</strong> {{ item.email }}</p>
-          <p class="card-text"><strong>Age:</strong> {{ item.age }}</p>
-          <p class="card-text"><strong>Phone Number:</strong> {{ item.phoneNumber }}</p>
+          <p class="card-text"><strong>{{ 'age' | translate }}:</strong> {{ item.age }}</p>
+          <p class="card-text"><strong>{{ 'phoneNumber' | translate }}:</strong> {{ item.phoneNumber }}</p>
           <p class="card-text"><strong>Event ID:</strong> {{ item.eventId }}</p>
-          <p class="card-text"><strong>ID:</strong> {{ item.id }}</p>
+          <p class="card-text"><strong>U-ID:</strong> {{ item.uid }}</p>
           <div class="d-flex d-flex justify-content-around"> <div></div>
           <button class="btn btn-success" (click)="accept()" >Accept</button> 
           <button class="btn btn-danger" >Decline</button>

@@ -6,6 +6,7 @@ import { RoleGuard } from './core/guards/role.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ForgotPasswordComponent } from './core/authentication/forgot-password/forgot-password.component';
 import { UserComponent } from './modules/home/user/user.component';
+import { UserGuard } from './core/guards/user.guard';
 
 const routes: Routes = [
   {
@@ -23,7 +24,8 @@ const routes: Routes = [
   },
   {
     path: 'user/profile',
-    component: UserComponent
+    component: UserComponent,
+    canActivate: [UserGuard]
   },
   {
     path: 'forgot-password',

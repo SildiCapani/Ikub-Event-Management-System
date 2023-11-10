@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/core/models/user';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
@@ -19,22 +18,21 @@ export class UserService {
     
    }
 
-   userLogin(email: string, password: string): Promise<void> {
-    return this.auth.signInWithEmailAndPassword(email, password)
-    .then((result: any) => {
-      const uid: string = result.user.uid;
-      this.getUser(uid).subscribe((userInfo) => {
-        this.user = userInfo;
-        this.setUserToLocaleStorage(this.user)
-        this.user$.next(this.user)
-        this.router.navigateByUrl('/')
-      })
-    })
-    .catch((error) => {
-      const errorMessage = this.handleFirebaseError(error);
-      this.toastrService.error(errorMessage, 'Login Faild');
-      console.log(error.code)
-    });
+   async userLogin(email: string, password: string): Promise<void> {
+    try {
+       const result = await this.auth.signInWithEmailAndPassword(email, password);
+       const uid: string = result.user.uid;
+       this.getUser(uid).subscribe((userInfo) => {
+         this.user = userInfo;
+         this.setUserToLocaleStorage(this.user);
+         this.user$.next(this.user);
+         this.router.navigateByUrl('/');
+       });
+     } catch (error) {
+       const errorMessage = this.handleFirebaseError(error);
+       this.toastrService.error(errorMessage, 'Login Faild');
+       console.log(error.code);
+     }
    }
 
    async userSignUp(userInfo: User, password: string): Promise<void> {
@@ -61,29 +59,26 @@ export class UserService {
       });
   }
 
-  registerOrganizer(userInfo: User, password: string): Promise<void> {
-    return this.auth
-      .createUserWithEmailAndPassword(userInfo.email, password)
-      .then((result) => {
-        this.setUserData(userInfo, result.user.uid);
-        this.toastrService.success('Organizer successfully registered')
-        this.router.navigateByUrl('/dashboard')
-      })
+  async registerOrganizer(userInfo: User, password: string): Promise<void> {
+    const result = await this.auth
+      .createUserWithEmailAndPassword(userInfo.email, password);
+    this.setUserData(userInfo, result.user.uid);
+    this.toastrService.success('Organizer successfully registered');
+    this.router.navigateByUrl('/dashboard');
   }
 
-  updateUserData(user: any, uid: string): Promise<void> {
+  async updateUserData(user: any, uid: string): Promise<void> {
     const userRef: AngularFirestoreDocument<User> = this.firestore.doc(
       `users/${uid}`
     );
 
-    return userRef.update(user).then(() => {
+    await userRef.update(user);
     this.getUser(uid).subscribe((userInfo) => {
       this.user = userInfo;
-      this.setUserToLocaleStorage(this.user)
-      this.user$.next(this.user)
-      this.router.navigateByUrl('/')
-    })
-  })
+      this.setUserToLocaleStorage(this.user);
+      this.user$.next(this.user);
+      this.router.navigateByUrl('/');
+    });
   }
 
   setUserData(user: User, uid: any) {
@@ -144,15 +139,14 @@ export class UserService {
     // }
 
 
-    ForgotPassword(email: string) {
-      return this.auth
-        .sendPasswordResetEmail(email)
-        .then(() => {
-          window.alert('Password reset email sent, check your inbox.');
-        })
-        .catch((error) => {
-          window.alert(error);
-        });
+    async ForgotPassword(email: string) {
+      try {
+        await this.auth
+          .sendPasswordResetEmail(email);
+        window.alert('Password reset email sent, check your inbox.');
+      } catch (error) {
+        window.alert(error);
+      }
     }
 
 
@@ -160,8 +154,9 @@ export class UserService {
     return this.auth.signOut()
     .then(() => {
       localStorage.removeItem(this.USER_KEY);
-      this.router.navigateByUrl('/login')
-    })
+      window.location.reload()
+    });
+    
   }
 
    private setUserToLocaleStorage(user: User): void {
