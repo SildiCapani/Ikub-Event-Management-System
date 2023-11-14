@@ -25,7 +25,6 @@ img {
 .nav-link.active {
     
     color: white;
-    border-bottom: 4px solid red;
-    text-decoration-color: red;
+    border-bottom: 4px solid white;
   }
   

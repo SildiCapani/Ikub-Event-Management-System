@@ -77,7 +77,7 @@
 
         <!-- <app-user-list [event]="event"></app-user-list> -->
         
-        <app-comments [event]="event"></app-comments>
+        <app-comments *ngIf="this.calculateDaysLeftFunction(event.lastDate) <= 0" [event]="event"></app-comments>
 
       </div>
     </div>

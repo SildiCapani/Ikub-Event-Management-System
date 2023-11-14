@@ -4,6 +4,7 @@ import { Events } from 'src/app/core/models/event';
 import { EventsService } from 'src/app/core/services/events.service';
 import { SearchService } from 'src/app/core/services/search.service';
 import { TranslateService } from '@ngx-translate/core';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-events',
@@ -11,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent implements OnInit {
-  // events$: Observable<Event[]> = this.eventsService.getEventsData()
+  
   search?: string;
   events: Events[] = [];
 
@@ -24,25 +25,37 @@ export class EventsComponent implements OnInit {
 
   getSearch(): void {
     this.getSearchByInput();
+    this.getSearchByLocation();
+  }
+
+  getSearchByLocation(): void {
+    this.searchService.search
+      .pipe(
+        switchMap((searchValue: string) => {
+          this.search = searchValue;
+          return this.eventsService.getEventsData();
+        }),
+      )
+      .subscribe((searchedEvents: Events[]) => {
+        this.events =
+          this.search ? searchedEvents.filter((item) => item.data.location.toLocaleLowerCase().includes(this.search.toLocaleLowerCase()))
+            : searchedEvents;
+      });
   }
 
   getSearchByInput(): void {
-    this.searchService.search.subscribe((searchValue) => {
-      this.search = searchValue;
-      this.eventsService.getEventsData().subscribe((searchedEvents) => {
-        if (this.search) {
-          this.events = searchedEvents
-            // .map(({ data }) => data)
-            .filter((item) =>
-              item.data.title
-                .toLocaleLowerCase()
-                .includes(this.search.toLocaleLowerCase())
-            );
-        } else {
-          this.events = searchedEvents;
-        }
+    this.searchService.search
+      .pipe(
+        switchMap((searchValue: string) => {
+          this.search = searchValue;
+          return this.eventsService.getEventsData();
+        }),
+      )
+      .subscribe((searchedEvents: Events[]) => {
+        this.events =
+          this.search ? searchedEvents.filter((item) => item.data.title.toLocaleLowerCase().includes(this.search.toLocaleLowerCase()))
+            : searchedEvents;
       });
-    });
   }
 
   ngOnInit(): void {

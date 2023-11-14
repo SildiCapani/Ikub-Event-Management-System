@@ -7,7 +7,6 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -37,11 +36,7 @@ export class RegisterOrganizerComponent {
   hideConfirmPassword: boolean = true;
   returnUrl: string = '';
 
-  constructor(
-    private userService: UserService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router
-  ) {}
+  constructor(private userService: UserService) {}
 
   submit(): void {
     this.isSubmitted = true;
@@ -60,9 +55,7 @@ export class RegisterOrganizerComponent {
     console.log(this.registerForm);
   }
 
-  ngOnInit(): void {
-    this.returnUrl = this.activatedRoute.snapshot.queryParams['returnUrl'];
-  }
+  ngOnInit(): void {}
 
   passwordsMatchValidator(
     passwordControlName: string,

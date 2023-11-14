@@ -1,7 +1,17 @@
-<div class="flex">
-        <input matInput class="form-control" placeholder="{{ 'search' | translate }} ..." type="search" [(ngModel)]="searchValue" (input)="updateSearchValue($event)">
-        <!-- <button *ngIf="searchValue.length >= 4" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''; updateSearchValue($event) ">
-          <mat-icon>close</mat-icon>
-        </button> -->
+<div class="d-flex">
+        <div><input matInput class="form-control" placeholder="{{ 'search' | translate }} ..." type="search" [(ngModel)]="searchValue" (input)="updateSearchValue($event)"></div>
+
+        <div ngbDropdown class="btn-group">
+          <button type="button" class="btn btn-info dropdown-toggle" ngbDropdownToggle>
+            Locations
+          </button>
+          <div ngbDropdownMenu class="dropdown-menu">
+            <div *ngFor="let item of Locations"> 
+            <a class="dropdown-item" ngbDropdownItem (click)="setValue(item)"> {{item}}</a>
+             <div class="dropdown-divider"></div>
+            </div>
+          </div>
+          
+        </div>
       
 </div>

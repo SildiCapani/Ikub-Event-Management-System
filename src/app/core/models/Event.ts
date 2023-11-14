@@ -12,9 +12,7 @@ export interface Event {
   location: string;
   title: string;
   waiting: string[]
-  commnets: [
-    Comment
-  ]
+  commnets: Comment[]
 }
 
 export interface Events {

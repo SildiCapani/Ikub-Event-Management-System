@@ -45,8 +45,8 @@ export class EventComponent implements OnInit {
     const bookingInfo = {
       name: this.user.fullName,
       email: this.user.email,
-      phoneNumber: this.user.phoneNumber,
-      age: this.user.age,
+      phoneNumber: this.user.phoneNumber ?? '',
+      age: this.user.age ?? '',
       uid: this.user.uid
     }
     this.booking.bookEventRequest(bookingInfo, this.eventId)

@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { CanLoad, Route, Router, UrlSegment, UrlTree } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { User } from "../models/user";
+import { Roles } from "src/app/enums";
 
 
 @Injectable({
@@ -25,7 +26,7 @@ export class RoleGuard implements CanLoad {
     
     canLoad(route: Route): boolean {
         const user = this.getUserFromLocalStorage()
-        if(user?.role == "organizer" || user?.role == "admin") {
+        if(user?.role == Roles.ORGANIZER || user?.role == Roles.ADMIN) {
             return true
         } else if (user) {
             this.toastrService.warning('Not Authorized!')
