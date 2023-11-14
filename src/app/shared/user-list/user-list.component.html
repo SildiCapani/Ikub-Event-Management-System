@@ -1,5 +1,5 @@
 <div >
-    <div class="card mt-4" *ngIf="user?.role == 'organizer'">
+    <div class="card mt-4" *ngIf="user?.role == Roles.ORGANIZER">
         <div class="card-body" *ngIf="event.namesOfRegisteredAttenders.length > 1; else noRegisteredAttenders">
         <h5 class="card-title">{{ 'registeredAtt' | translate }}</h5>
         <ng-container *ngIf="event.namesOfRegisteredAttenders.length > 1; else noRegisteredAttenders">

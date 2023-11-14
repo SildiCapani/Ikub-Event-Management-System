@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { Booking } from 'src/app/core/models/booking';
+import { map } from 'rxjs';
 import { User } from 'src/app/core/models/user';
-import { BookingService } from 'src/app/core/services/booking.service';
 import { EventCrudService } from 'src/app/core/services/event-crud.service';
 import { EventsService } from 'src/app/core/services/events.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { Roles } from "src/app/enums";
 
 @Component({
   selector: 'app-dashboard',
@@ -13,7 +12,7 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {
-  // eventsData$: Observable<Event[]> = this.eventsService.getEventsData();
+  Roles: typeof Roles = Roles;
   user: User =  this.userService.user$.getValue()
   columns = [
     'title',
@@ -41,12 +40,13 @@ export class DashboardComponent {
     .getEventsData()
     .pipe(map((data: any) => data.map((item: any) => item.data)));
 
+
   constructor(
     private eventsService: EventsService,
     private eventCrudService: EventCrudService,
     private userService: UserService,
   ) {
-
+  
   }
 
   confirmDelete(eventId: string) {

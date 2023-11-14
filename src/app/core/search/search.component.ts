@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { SearchService } from '../services/search.service';
 import { EventsService } from '../services/events.service';
-import { Events } from '../models/event';
-import { Observable } from 'rxjs';
+import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-search',

@@ -3,6 +3,7 @@ import { CanActivate, Router, UrlTree } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
+import { Roles } from 'src/app/enums';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class OrganizerGuard implements CanActivate {
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const user = this.getUserFromLocalStorage();
-    if ( user.role == 'organizer' ) {
+    if ( user.role == Roles.ORGANIZER ) {
       return true;
     } else if (user) {
       this.toastrService.warning('Not Authorized!')

@@ -3,14 +3,14 @@
     <button
       mat-raised-button
       class="demo-button"
-      *ngIf="user.role == 'organizer'"
+      *ngIf="user.role == Roles.ORGANIZER"
       routerLink="create-event"
     >
     {{ 'createEvent' | translate }}  <mat-icon>add</mat-icon> 
     </button>
     <button
       mat-raised-button
-      *ngIf="user.role == 'admin'"
+      *ngIf="user.role == Roles.ADMIN"
       routerLink="register-organizer"
       class="demo-button"
     >
