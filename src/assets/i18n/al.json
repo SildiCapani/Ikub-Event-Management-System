@@ -35,5 +35,7 @@
     "fullName": "Emri i plotë",
     "phoneNumber": "Numri i telefonit",
     "age": "Mosha",
-    "address": "Adresë"
+    "address": "Adresë",
+    "edit": "Ndrysho",
+    "locations": "Vendndodhjet"
 }

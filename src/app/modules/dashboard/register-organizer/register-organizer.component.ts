@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
+import { Roles } from 'src/app/enums';
 
 @Component({
   selector: 'app-register-organizer',
@@ -45,14 +46,13 @@ export class RegisterOrganizerComponent {
     const user: User = {
       fullName: this.registerForm.get('name')?.value,
       email: this.registerForm.get('email')?.value,
-      role: 'organizer',
+      role: Roles.ORGANIZER,
       emailVerified: false,
     };
 
     const password: string = this.registerForm.get('password')?.value;
 
     this.userService.registerOrganizer(user, password);
-    console.log(this.registerForm);
   }
 
   ngOnInit(): void {}

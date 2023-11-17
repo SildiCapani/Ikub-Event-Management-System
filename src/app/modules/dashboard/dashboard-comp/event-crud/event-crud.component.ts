@@ -10,17 +10,21 @@ import { EventsService } from 'src/app/core/services/events.service';
 @Component({
   selector: 'app-event-crud',
   templateUrl: './event-crud.component.html',
-  styleUrls: ['./event-crud.component.css']
+  styleUrls: ['./event-crud.component.css'],
 })
-
-
 export class EventCrudComponent implements OnInit {
-
-  eventData: Event
-  eventId: string;
+  eventData: Event;
+  eventId = this.route.snapshot.paramMap.get('id');
+  event$ = this.eventsService.getEventById(this.eventId);
   eventForm: FormGroup;
-  constructor(private route: ActivatedRoute, private eventsService: EventsService,private eventCrudService: EventCrudService , private toastr: ToastrService, private location: Location) {
-    
+
+  constructor(
+    private route: ActivatedRoute,
+    private eventsService: EventsService,
+    private eventCrudService: EventCrudService,
+    private toastr: ToastrService,
+    private location: Location
+  ) {
     this.eventForm = new FormGroup({
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
@@ -29,24 +33,23 @@ export class EventCrudComponent implements OnInit {
       price: new FormControl(0, [Validators.required, Validators.min(1)]),
       location: new FormControl('', Validators.required),
       lastDate: new FormControl(new Date(), Validators.required),
-      maxAttenders: new FormControl(0, [Validators.required, Validators.min(50)]),
-    })
+      maxAttenders: new FormControl(0, [
+        Validators.required,
+        Validators.min(50),
+      ]),
+    });
   }
 
   onSubmit(): void {
-
-    if(this.eventForm.valid){
-      
-      this.eventCrudService.updateEvent(this.eventId, this.eventForm.value)
-    
+    if (this.eventForm.valid) {
+      this.eventCrudService.updateEvent(this.eventId, this.eventForm.value);
     } else {
-      this.toastr.error("Invalid Form pleas check your inputs", "Invalid Form")
+      this.toastr.error('Invalid Form pleas check your inputs', 'Invalid Form');
     }
-    
   }
 
   goBack(): void {
-    this.location.back()
+    this.location.back();
   }
 
   setFormValues() {
@@ -59,14 +62,15 @@ export class EventCrudComponent implements OnInit {
         date: this.eventData.date,
         location: this.eventData.location,
         lastDate: this.eventData.lastDate,
-        maxAttenders: this.eventData.maxAttenders
+        maxAttenders: this.eventData.maxAttenders,
       });
     }
   }
 
   ngOnInit(): void {
-      this.eventId = this.route.snapshot.paramMap.get('id');
-      this.eventsService.getEventById(this.eventId).subscribe(data => {this.eventData = data; this.setFormValues()})
-    }
-
+    this.event$.subscribe((data) => {
+      this.eventData = data;
+      this.setFormValues();
+    });
+  }
 }

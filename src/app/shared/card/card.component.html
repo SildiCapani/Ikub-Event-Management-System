@@ -1,7 +1,7 @@
 <!-- Card Wider -->
 <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4" >
   <div class="col mb-3 mb-lg-5" *ngFor="let event of events">
-    <a class="card h-100  rounded-3" routerLink="details/{{event.data.id}}" style="text-decoration: none;">
+    <a class="card h-100" routerLink="details/{{event.data.id}}" style="text-decoration: none;">
       <img class="card-img-top img-fluid" [src]="event.data.image" alt="{{ event.data.title }}"  style="object-fit: cover; height: 250px;"/>
       <div class="card-body text-center">
         <h3 class="card-title text-truncate">

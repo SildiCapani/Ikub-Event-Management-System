@@ -1,11 +1,8 @@
 import { Location } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Booking } from 'src/app/core/models/booking';
 import { BookingService } from 'src/app/core/services/booking.service';
-import { BookingsListComponent } from '../bookings-list/bookings-list.component';
-import { MatDialogRef } from '@angular/material/dialog';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-booking',
@@ -23,7 +20,11 @@ export class BookingComponent {
   accept() {
     this.booking.acceptBooking(this.item);
     this.modalService.dismissAll()
-   
+  }
+
+  decline() {
+    this.booking.rejectBooking(this.item);
+    this.modalService.dismissAll()
   }
 
   goBack(): void {

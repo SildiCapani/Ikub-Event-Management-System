@@ -36,5 +36,7 @@
     "fullName": "Full Name",
     "phoneNumber": "Phone Number",
     "age": "Age",
-    "address": "Address"
+    "address": "Address",
+    "edit": "Edit",
+    "locations": "Locations"
 }

@@ -16,7 +16,7 @@
           </div><br/>
     
             <!-- Comment input form -->
-            <form [formGroup]="commentForm" class=" d-flex p-1 my-2 my-lg-0" (submit)="addComment()" >
+            <form [formGroup]="commentForm" *ngIf="event.namesOfRegisteredAttenders.includes(user.uid)" class=" d-flex p-1 my-2 my-lg-0" (submit)="addComment()" >
             <div  >
               <input
                 type="text"

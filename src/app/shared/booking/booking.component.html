@@ -3,15 +3,10 @@
     <div>
       <div class="card">
         <div class="card-body border">
-          <h5 class="card-title"> <span style="font-size: 1rem;font-weight:700"> Name: </span> {{ item.name }}</h5>
-          <p class="card-text"><strong>Email:</strong> {{ item.email }}</p>
-          <p class="card-text"><strong>{{ 'age' | translate }}:</strong> {{ item.age }}</p>
-          <p class="card-text"><strong>{{ 'phoneNumber' | translate }}:</strong> {{ item.phoneNumber }}</p>
-          <p class="card-text"><strong>Event ID:</strong> {{ item.eventId }}</p>
-          <p class="card-text"><strong>U-ID:</strong> {{ item.uid }}</p>
+          <h5>Do you want to accept this booking request?</h5>
           <div class="d-flex d-flex justify-content-around"> <div></div>
           <button class="btn btn-success" (click)="accept()" >Accept</button> 
-          <button class="btn btn-danger" >Decline</button>
+          <button class="btn btn-danger" (click)="decline()" >Decline</button>
           <div></div>  </div>
         </div>
       </div>

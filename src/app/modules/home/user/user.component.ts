@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { map, switchMap, tap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { User } from 'src/app/core/models/user';
 import { UserService } from 'src/app/core/services/user.service';
 
@@ -14,6 +14,7 @@ export class UserComponent implements OnInit {
   @ViewChild('editMode') editMode: ElementRef;
 
   localUser: User;
+  toggleView: boolean = false
 
 
   userDetails$ = this.userService.user$.pipe(
@@ -40,8 +41,10 @@ export class UserComponent implements OnInit {
   constructor(private userService: UserService, private location: Location) {}
 
   toggleEditSection() {
+     
     this.editMode.nativeElement.style.display =
-      this.editMode.nativeElement.style.display === 'none' ? 'block' : 'none';
+    this.editMode.nativeElement.style.display === 'none' ? 'block' : 'none';
+    this.toggleView = !this.toggleView
   }
 
   saveChanges() {

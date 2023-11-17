@@ -12,6 +12,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { BookingComponent } from './booking/booking.component';
+import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -21,7 +23,8 @@ import { BookingComponent } from './booking/booking.component';
     UserListComponent,
     CommentsComponent,
     BookingsListComponent,
-    BookingComponent
+    BookingComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -30,6 +33,7 @@ import { BookingComponent } from './booking/booking.component';
     ReactiveFormsModule,
     TranslateModule,
     MatButtonModule,
+    HttpClientModule,
     NgbModalModule, 
     MatTableModule,
   ],

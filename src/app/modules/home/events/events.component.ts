@@ -23,13 +23,8 @@ export class EventsComponent implements OnInit {
     private searchService: SearchService,
   ) {}
 
-  getSearch(): void {
-    this.getSearchByInput();
-    this.getSearchByLocation();
-  }
-
   getSearchByLocation(): void {
-    this.searchService.search
+    this.searchService.location
       .pipe(
         switchMap((searchValue: string) => {
           this.search = searchValue;
@@ -59,6 +54,7 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getSearch();
+    this.getSearchByInput();
+    this.getSearchByLocation();
   }
 }

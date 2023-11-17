@@ -2,17 +2,17 @@
   <app-search></app-search>
 </div>
 
-<div class="row">
+<div class="row w-100">
 
        
    <h2 class="text-center">Events</h2>
       
     <app-card [events]="events"></app-card> 
     
-          <div class="mat-flex-container" *ngIf="events.length == 0">
-            <div class="text-center">
-              <h2>{{ 'noEventsFound' | translate }}</h2>
-            </div>
-          </div>
+    <div class="mat-flex-container" *ngIf="events.length == 0">
+        <div class="text-center">
+          <h2>{{ 'noEventsFound' | translate }}</h2>
+        </div>
+    </div>
 
-       </div>
+</div>
