@@ -9,7 +9,7 @@
       
     <app-card [events]="events"></app-card> 
     
-    <div class="mat-flex-container" *ngIf="events.length == 0">
+    <div class="mat-flex-container" *ngIf="showNoEventsMessage && events.length == 0">
         <div class="text-center">
           <h2>{{ 'noEventsFound' | translate }}</h2>
         </div>

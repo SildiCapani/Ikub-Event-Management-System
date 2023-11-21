@@ -41,7 +41,8 @@ import { HttpClientModule } from '@angular/common/http';
     CardComponent,
     UserListComponent,
     CommentsComponent,
-    BookingsListComponent
+    BookingsListComponent,
+    LoadingSpinnerComponent
   ]
 })
 export class SharedModule { }

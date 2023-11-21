@@ -9,13 +9,15 @@ import { LoadingService } from 'src/app/core/services/loading.service';
 
 export class LoadingSpinnerComponent implements OnInit {
 
-  isLoading = this.loadingService.isLoading$
+  isLoading: boolean = false;
 
   constructor(private loadingService: LoadingService) {
 
   }
 
   ngOnInit(): void {
-      
+    this.loadingService.isLoading$.subscribe((isLoading) => {
+      this.isLoading = isLoading;
+    });
   }
 }

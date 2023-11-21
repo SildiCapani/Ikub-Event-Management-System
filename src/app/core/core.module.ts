@@ -37,7 +37,8 @@ import { TranslateModule } from '@ngx-translate/core'
     MatButtonModule,
     MatToolbarModule,
     HttpClientModule,
-    TranslateModule
+    TranslateModule,
+    HttpClientModule
   ],
   exports: [
     HeaderComponent,

@@ -40,8 +40,7 @@ export class EventComponent implements OnInit {
     this.modalService.open(bookingDialog);
   }
 
-  bookEvent(waitingList: Array<string>): void {
-    // this.eventService.registerForEvent(this.eventId,this.user.uid)
+  bookEvent(): void {
     const bookingInfo = {
       name: this.user.fullName,
       email: this.user.email,

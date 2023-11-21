@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, take } from 'rxjs';
+import { Observable, map, take } from 'rxjs';
 import { Event, Events } from 'src/app/core/models/event';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,17 +14,23 @@ import { Event, Events } from 'src/app/core/models/event';
 
 export class EventsService {
 
-  
+  databaseURL: string = environment.firebase.databaseURL
 
-  constructor(private db: AngularFireDatabase, private toastrService: ToastrService) { }
+  constructor(private db: AngularFireDatabase, private toastrService: ToastrService, private httpClient: HttpClient) { }
 
   getEventsData(): Observable<Events[]>{
-    return this.db.list<Events>('events').valueChanges()
+    return this.httpClient.get<Events[]>(`${this.databaseURL}/events.json`).pipe(
+      map((data: Events[]) =>
+        Object.keys(data).map((key) => {
+          return data[key];
+        })
+      )
+    );
   }
 
   
   getEventById(id: string): Observable<Event> {
-    return this.db.object<Event>(`events/${id}/data`).valueChanges()
+    return this.httpClient.get<Event>(`${this.databaseURL}/events/${id}/data.json`)
   }
 
 

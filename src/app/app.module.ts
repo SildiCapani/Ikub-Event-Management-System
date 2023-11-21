@@ -36,6 +36,7 @@ import { CoreModule } from './core/core.module';
 import { DashboardComponent } from './modules/dashboard/dashboard-comp/dashboard.component';
 import { HttpLoaderFactory } from './core/const/loader-factory';
 import { SharedModule } from './shared/shared.module';
+import { LoadingInterceptor } from './loading.interceptor';
 
 
 @NgModule({
@@ -86,7 +87,12 @@ import { SharedModule } from './shared/shared.module';
       useClass: HttpGlobalErrorHandlerInterceptor,
       multi: true
 
-    }
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

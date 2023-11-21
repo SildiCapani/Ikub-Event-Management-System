@@ -12,7 +12,7 @@ import { SearchService } from '../services/search.service';
 export class SearchComponent {
 
   searchValue: string = '';
-  location: string = '';
+  locationInput$ = this.searchService.location
   Locations: string[]; 
 
   constructor(private searchService: SearchService, private eventService: EventsService) {
@@ -27,11 +27,10 @@ export class SearchComponent {
   }
 
   setValue(input: string): void {
-    this.location = input
-    this.searchService.setSearchLocation(this.location);
+    this.searchService.setSearchLocation(input)
   }
 
-  updateSearchValue(event: Event): void {
+  updateSearchValue(): void {
     this.searchService.setSearchInputValue(this.searchValue)
   }
 

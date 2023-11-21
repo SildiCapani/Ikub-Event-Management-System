@@ -11,7 +11,12 @@ import { EventsService } from './events.service';
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class BookingService {
+  
+  databaseURL: string = environment.firebase.databaseURL
+  
   constructor(
     private db: AngularFireDatabase,
     private toastrService: ToastrService,
@@ -22,7 +27,7 @@ export class BookingService {
 
   getBookings(): Observable<Booking[]> {
     return this.httpClient
-      .get<Booking[]>(`${environment.firebase.databaseURL}/bookings.json`)
+      .get<Booking[]>(`${this.databaseURL}/bookings.json`)
       .pipe(
         map((data: Booking[]) =>
           Object.keys(data).map((key) => {
@@ -34,7 +39,8 @@ export class BookingService {
   }
 
   getBookingById(id: string): Observable<Event> {
-    return this.db.object<Event>(`bookings/${id}/data`).valueChanges();
+    return this.httpClient
+    .get<Event>(`${this.databaseURL}/bookings/${id}/data.json`);
   }
 
   acceptBooking(item: Booking): void {

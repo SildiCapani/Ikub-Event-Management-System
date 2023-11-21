@@ -33,7 +33,7 @@ export class CommentsComponent {
     }
 
     this.commentService.comment(comment, this.eventId)
-
+    window.location.reload()
   }
 
   calculateDaysLeftFunction = calculateDaysLeft

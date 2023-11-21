@@ -1,6 +1,6 @@
 <div class="d-flex">
 
-        <div><input matInput class="form-control" placeholder="{{ 'search' | translate }} ..." type="search" [(ngModel)]="searchValue" (input)="updateSearchValue($event)"></div>
+        <div><input matInput class="form-control" placeholder="{{ 'search' | translate }} ..." type="search" [(ngModel)]="searchValue" (input)="updateSearchValue()"></div>
 
         <div ngbDropdown class="btn-group">
           <button type="button" class="btn btn-info dropdown-toggle" ngbDropdownToggle>
@@ -14,6 +14,8 @@
           </div>
           
         </div>
-          <a (click)="setValue('');" *ngIf="location != ''" ><i class="bi bi-x-lg"></i></a>
+        <div *ngIf="locationInput$ | async as location">
+            <a (click)="setValue('');" *ngIf="location != ''" ><i class="bi bi-x-lg"></i></a>
+        </div>
         
 </div>

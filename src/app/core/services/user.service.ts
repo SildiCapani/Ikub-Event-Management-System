@@ -90,9 +90,6 @@ export class UserService {
       email: user.email,
       fullName: user.fullName,
       role: user.role,
-      // age: user?.age,
-      // address: user?.address,
-      // phoneNumber: user?.phoneNumber,
       emailVerified: user.emailVerified,
     };
     return userRef.set(userData, {

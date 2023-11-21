@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { calculateDaysLeft } from 'src/app/core/const/calculate-days';
 import { Events } from 'src/app/core/models/event';
 import { EventsService } from 'src/app/core/services/events.service';
@@ -11,10 +11,11 @@ import { switchMap } from 'rxjs';
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss'],
 })
-export class EventsComponent implements OnInit {
+export class EventsComponent implements OnInit, OnDestroy {
   
   search?: string;
   events: Events[] = [];
+  showNoEventsMessage = false;
 
   calculateDaysLeftFunction = calculateDaysLeft
 
@@ -35,6 +36,7 @@ export class EventsComponent implements OnInit {
         this.events =
           this.search ? searchedEvents.filter((item) => item.data.location.toLocaleLowerCase().includes(this.search.toLocaleLowerCase()))
             : searchedEvents;
+            // console.log(this.search)
       });
   }
 
@@ -54,7 +56,16 @@ export class EventsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
     this.getSearchByInput();
-    this.getSearchByLocation();
+    this.getSearchByLocation()
+
+    setTimeout(() => {
+      this.showNoEventsMessage = true;
+    }, 3000);
+  }
+
+  ngOnDestroy(): void {
+
   }
 }

@@ -36,14 +36,13 @@ export class HttpGlobalErrorHandlerInterceptor implements HttpInterceptor {
   }
 
   private handleError(error: HttpErrorResponse): string {
-    // Implement your error handling logic here
-    // You can extract and format error messages based on the error response
+
     let errorMessage = 'An error occurred';
     if (error.error instanceof ErrorEvent) {
-      // Client-side error
+ 
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side error
+     
       errorMessage = `Status: ${error.status}, Message: ${error.message}`;
     }
     return errorMessage;
